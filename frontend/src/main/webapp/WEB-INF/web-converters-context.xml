@@ -4,11 +4,11 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-        <!--<bean id="conversionService" class="com.spp.chekh.pmfrontend.converters.CustomConvertersRegister">-->
-            <!--<property name="converters">-->
-                <!--<set>-->
-                   <!---->
-                <!--</set>-->
-            <!--</property>-->
-        <!--</bean>-->
+        <bean id="conversionService" class="com.spp.chekh.pmfrontend.converter.CustomConvertersRegister">
+            <property name="converters">
+                <set>
+                    <bean class="com.spp.chekh.pmfrontend.converter.entity.CoachEntityToCoachViewModelConverter"/>
+                </set>
+            </property>
+        </bean>
 </beans>
