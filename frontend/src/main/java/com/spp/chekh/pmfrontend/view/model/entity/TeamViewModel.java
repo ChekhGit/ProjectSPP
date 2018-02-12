@@ -3,7 +3,7 @@ package com.spp.chekh.pmfrontend.view.model.entity;
 public class TeamViewModel {
 
     private String id;
-    private String league;
+    private String idLeague;
     private String name;
     private String amountOfPlayers;
 
@@ -13,14 +13,6 @@ public class TeamViewModel {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getLeague() {
-        return league;
-    }
-
-    public void setLeague(String league) {
-        this.league = league;
     }
 
     public String getName() {
@@ -39,11 +31,19 @@ public class TeamViewModel {
         this.amountOfPlayers = amountOfPlayers;
     }
 
+    public String getIdLeague() {
+        return idLeague;
+    }
+
+    public void setIdLeague(String idLeague) {
+        this.idLeague = idLeague;
+    }
+
     @Override
     public String toString() {
         return "TeamViewModel{" +
                 "id='" + id + '\'' +
-                ", league='" + league + '\'' +
+                ", idLeague='" + idLeague + '\'' +
                 ", name='" + name + '\'' +
                 ", amountOfPlayers='" + amountOfPlayers + '\'' +
                 '}';

@@ -5,8 +5,8 @@ public class PlayerViewModel {
     private String id;
     private String name;
     private String surname;
-    private String team;
-    private String position;
+    private String idTeam;
+    private String idPosition;
     private String idPlayerStatistic;
 
     public String getId() {
@@ -33,22 +33,6 @@ public class PlayerViewModel {
         this.surname = surname;
     }
 
-    public String getTeam() {
-        return team;
-    }
-
-    public void setTeam(String team) {
-        this.team = team;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
     public String getIdPlayerStatistic() {
         return idPlayerStatistic;
     }
@@ -57,14 +41,30 @@ public class PlayerViewModel {
         this.idPlayerStatistic = idPlayerStatistic;
     }
 
+    public String getIdTeam() {
+        return idTeam;
+    }
+
+    public void setIdTeam(String idTeam) {
+        this.idTeam = idTeam;
+    }
+
+    public String getIdPosition() {
+        return idPosition;
+    }
+
+    public void setIdPosition(String idPosition) {
+        this.idPosition = idPosition;
+    }
+
     @Override
     public String toString() {
         return "PlayerViewModel{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", team='" + team + '\'' +
-                ", position='" + position + '\'' +
+                ", idTeam='" + idTeam + '\'' +
+                ", idPosition='" + idPosition + '\'' +
                 ", idPlayerStatistic='" + idPlayerStatistic + '\'' +
                 '}';
     }

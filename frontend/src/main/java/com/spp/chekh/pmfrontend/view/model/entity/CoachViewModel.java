@@ -6,7 +6,8 @@ public class CoachViewModel {
     private String name;
     private String surname;
     private String yearsOld;
-    private String team;
+    private String idTeam;
+    private String idStatistic;
 
     public String getId() {
         return id;
@@ -40,12 +41,20 @@ public class CoachViewModel {
         this.yearsOld = yearsOld;
     }
 
-    public String getTeam() {
-        return team;
+    public String getIdTeam() {
+        return idTeam;
     }
 
-    public void setTeam(String team) {
-        this.team = team;
+    public void setIdTeam(String idTeam) {
+        this.idTeam = idTeam;
+    }
+
+    public String getIdStatistic() {
+        return idStatistic;
+    }
+
+    public void setIdStatistic(String idStatistic) {
+        this.idStatistic = idStatistic;
     }
 
     @Override
@@ -55,7 +64,8 @@ public class CoachViewModel {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", yearsOld='" + yearsOld + '\'' +
-                ", team='" + team + '\'' +
+                ", idTeam='" + idTeam + '\'' +
+                ", idStatistic='" + idStatistic + '\'' +
                 '}';
     }
 }
