@@ -8,6 +8,7 @@
             <property name="converters">
                 <set>
                     <bean class="com.spp.chekh.pmfrontend.converter.entity.CoachEntityToCoachViewModelConverter"/>
+                    <bean class="com.spp.chekh.pmfrontend.converter.entity.PlayerEntityToPlayerViewModelConverter"/>
                 </set>
             </property>
         </bean>
