@@ -11,5 +11,8 @@ public class PageController {
         return "home";
     }
 
-
+    @RequestMapping(value = "/statistic", method = RequestMethod.GET)
+    public String goToStatPage() {
+        return "statView";
+    }
 }
