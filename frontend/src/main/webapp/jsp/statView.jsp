@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Soccer</title>
-    
+
     <link rel="stylesheet" href="../resources/css/bootstrap.css">
     <script type="text/javascript" src="../resources/js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
@@ -13,10 +13,10 @@
     
     <link rel="stylesheet" href="../resources/styles/tabs.css">
     <link rel="stylesheet" href="../resources/styles/dropDownList.css">
-    <script src="../resources/js/statistic.js"></script>
 
+    <script src="../resources/js/statistic.js"></script>
 </head>
-<body>
+<body >
      <div class="tabs">
         <div class="tab-2">
             <label for="tab2-1">Player statistic</label>
@@ -30,35 +30,19 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <select class="selectpicker" data-size="5" id="league-player">
-                            <option>AAAAA</option>
-                            <option>BBBBB</option>
-                            <option>CCCCC</option>
-                            <option>DDDDD</option>
-                            <option>a</option>
-                            <option>v</option>
-                            <option>v</option>
-                            <option>v</option>
+                        <select class="selectpicker" data-size="5" id="league-player" disabled>
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <select class="selectpicker" data-size="5" id="team-player">
-                            <option>AAA</option>
-                            <option>BBBBB</option>
-                            <option>CCCCC</option>
-                            <option>DDDDD</option>
+                        <select class="selectpicker" data-size="5" id="team-player" disabled>
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <select class="selectpicker" data-size="5" id="player-player">
-                            <option>AAAAA</option>
-                            <option>BBBBB</option>
-                            <option>CCCCC</option>
-                            <option>DDDDD</option>
+                        <select class="selectpicker" data-size="5" id="player-player" disabled>
                         </select>
                     </div>
                 </div>
