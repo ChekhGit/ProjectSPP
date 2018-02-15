@@ -9,6 +9,7 @@ $.ajax({
             newOption.innerHTML = country['surname'];
             selectCountry.appendChild(newOption);
         }
+        updateBadge(0,data.length);
         $('.selectpicker').selectpicker('refresh');
         setOnSelectHandler();
         setOnClickForClearAllButtons();
@@ -51,9 +52,18 @@ function onSelectHandler(event) {
         }
     }
     if (controlsArray[tabIndex][selectIndex+1]) {
+        /*for (let i = selectIndex+1; i < controlsArray[tabIndex].length; i++) {
+            clearSelectBox(controlsArray[tabIndex][i]);
+            $(controlsArray[tabIndex][i]).selectpicker('refresh');
+        }*/
         $(controlsArray[tabIndex][selectIndex+1]).prop('disabled', false);
         $(controlsArray[tabIndex][selectIndex+1]).selectpicker('refresh');
     }
+}
+
+function updateBadge(badgeIndex, value) {
+    let badge = document.querySelectorAll('.badge')[badgeIndex];
+    badge.innerHTML = value;
 }
 
 function clearSelectBox(control) {
