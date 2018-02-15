@@ -13,6 +13,6 @@ public class CoachStatisticEntityToCoachStatisticViewModelConverter implements C
         coachStatisticViewModel.setLostMatches(String.valueOf(coachStatisticEntity.getLostMatches()));
         coachStatisticViewModel.setTitles(String.valueOf(coachStatisticEntity.getTitles()));
         coachStatisticViewModel.setWinMatches(String.valueOf(coachStatisticEntity.getWinMatches()));
-        return null;
+        return coachStatisticViewModel;
     }
 }
