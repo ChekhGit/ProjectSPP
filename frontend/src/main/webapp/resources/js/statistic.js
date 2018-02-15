@@ -47,42 +47,31 @@ function setOnClickForClearAllButtons() {
 //             }
 //         }
 //     }
-//     /*controlsArray.forEach((elem, i) => {
-//         for (let )
-//         elem.forEach((con, j) =>{
-//             if (con.getAttribute('id') === control.getAttribute('id')) {
-//                 tabIndex = i;
-//                 selectIndex = j;
-//             }
-//         })
-//     });*/
-//
-//     for (let i = selectIndex; i < controlsArray[tabIndex].length; i++) {
-//         $(controlsArray[tabIndex][i]).prop('disabled', false);
-//         $(controlsArray[tabIndex][i]).selectpicker('refresh');
+//     if (controlsArray[tabIndex][selectIndex+1]) {
+//         $(controlsArray[tabIndex][selectIndex+1]).prop('disabled', false);
+//         $(controlsArray[tabIndex][selectIndex+1]).selectpicker('refresh');
 //     }
-//     /*let selectCountry = document.getElementById('league-player');
-//     let parent = $(selectCountry).closest('#select-container');
-//     let selectArray = $(parent[0]).children('.selectpicker');
-//     for (let i = 0; i< selectArray.length;i++){
-//         $(selectArray[i]).prop('disabled',false);
-//     }
-//     // $(selectCountry).prop('disabled',false);
-//     $(selectCountry).selectpicker('refresh');*/
 // }
 
 function clearSelectBox(control) {
-    control.removeChild(control.childNodes[0]);
-    while (control.childNodes[1]) {
-        control.removeChild(control.childNodes[1]);
+    if (control.childNodes.length) {
+        if (control.childNodes[0].localName !== 'option') {
+            control.removeChild(control.childNodes[0]);
+            while (control.childNodes[1]) {
+                control.removeChild(control.childNodes[1]);
+            }
+        }
     }
-    $(control).selectpicker('refresh');
 }
 
 function clearAll(event) {
     let button = event.target;
     let tabIndex = button.getAttribute('tab-numb');
+    $(controlsArray[tabIndex][0]).selectpicker('val','');
+    $(controlsArray[tabIndex][0]).selectpicker('refresh');
     for (let i = 1; i < controlsArray[tabIndex].length; i++) {
         clearSelectBox(controlsArray[tabIndex][i]);
+        $(controlsArray[tabIndex][i]).prop('disabled', true);
+        $(controlsArray[tabIndex][i]).selectpicker('refresh');
     }
 }
