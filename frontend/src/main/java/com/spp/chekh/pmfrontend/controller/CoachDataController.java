@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,10 +26,21 @@ public class CoachDataController {
     private final TypeDescriptor coachEntityListTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(CoachEntity.class));
     private final TypeDescriptor coachViewModelListTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(CoachViewModel.class));
 
+    private final TypeDescriptor coachEntityTypeDescriptor = TypeDescriptor.valueOf(CoachEntity.class);
+    private final TypeDescriptor coachViewModelTypeDescriptor = TypeDescriptor.valueOf(CoachViewModel.class);
+
     @RequestMapping(value = "/coach", method = RequestMethod.GET)
     @ResponseBody
     public List<CoachViewModel> getAllCoaches() {
         List<CoachEntity> coachEntities = coachService.findAll();
         return (List<CoachViewModel>) conversionService.convert(coachEntities, coachEntityListTypeDescriptor, coachViewModelListTypeDescriptor);
     }
+
+    @RequestMapping(value = "/coach/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public CoachViewModel getCoachById(@PathVariable int id) {
+        CoachEntity coachEntity = coachService.findById(id);
+        return (CoachViewModel) conversionService.convert(coachEntity, coachEntityTypeDescriptor, coachViewModelTypeDescriptor);
+    }
+
 }

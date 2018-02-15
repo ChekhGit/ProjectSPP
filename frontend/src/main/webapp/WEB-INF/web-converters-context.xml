@@ -9,6 +9,12 @@
                 <set>
                     <bean class="com.spp.chekh.pmfrontend.converter.entity.CoachEntityToCoachViewModelConverter"/>
                     <bean class="com.spp.chekh.pmfrontend.converter.entity.PlayerEntityToPlayerViewModelConverter"/>
+                    <bean class="com.spp.chekh.pmfrontend.converter.entity.CoachStatisticEntityToCoachStatisticViewModelConverter"/>
+                    <bean class="com.spp.chekh.pmfrontend.converter.entity.PlayerStatisticEntityToPlayerStatisticViewModelConverter"/>
+                    <bean class="com.spp.chekh.pmfrontend.converter.entity.TeamEntityToTeamViewModelConverter"/>
+                    <bean class="com.spp.chekh.pmfrontend.converter.entity.CountryEntityToCountryViewModelConverter"/>
+                    <bean class="com.spp.chekh.pmfrontend.converter.entity.LeagueEntityToLeagueViewModelConverter"/>
+                    <bean class="com.spp.chekh.pmfrontend.converter.entity.PositionEntityToPositionViewModelConverter"/>
                 </set>
             </property>
         </bean>

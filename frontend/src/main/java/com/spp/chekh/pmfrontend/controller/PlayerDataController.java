@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,10 +26,21 @@ public class PlayerDataController {
     private final TypeDescriptor playerEntityListTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PlayerEntity.class));
     private final TypeDescriptor playerViewModelListTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PlayerViewModel.class));
 
+    private final TypeDescriptor playerEntityTypeDescriptor = TypeDescriptor.valueOf(PlayerEntity.class);
+    private final TypeDescriptor playerViewModelTypeDescriptor = TypeDescriptor.valueOf(PlayerViewModel.class);
+
+
     @RequestMapping(value ="/player", method = RequestMethod.GET)
     @ResponseBody
     public List<PlayerViewModel> getAllPlayers(){
         List<PlayerEntity> playerEntities = playerService.findAll();
         return (List<PlayerViewModel>) conversionService.convert(playerEntities, playerEntityListTypeDescriptor, playerViewModelListTypeDescriptor);
+    }
+
+    @RequestMapping(value = "/player/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public PlayerViewModel getPlayerById(@PathVariable int id) {
+        PlayerEntity playerEntity = playerService.findById(id);
+        return (PlayerViewModel) conversionService.convert(playerEntity, playerEntityTypeDescriptor, playerViewModelTypeDescriptor);
     }
 }
