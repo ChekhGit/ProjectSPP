@@ -25,12 +25,16 @@
                 <div class="row">
                     <div class="col-md-4">
                         <select class="selectpicker" data-size="5" id="country-player">
+                            <option></option>
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
                         <select class="selectpicker" data-size="5" id="league-player" disabled>
+                            <option></option>
+                            <option>rgergreg</option>
+                            <option>gergerger</option>
                         </select>
                     </div>
                 </div>
@@ -47,7 +51,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <button class="btn btn-info" id="clear-player" onclick="">Clear all</button>
+                    <button class="btn btn-info" id="clear" tab-numb="0">Clear all</button>
                 </div>
             </div>
         </div>
