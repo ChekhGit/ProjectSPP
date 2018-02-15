@@ -15,6 +15,15 @@
     <link rel="stylesheet" href="../resources/styles/dropDownList.css">
 
     <script src="../resources/js/statistic.js"></script>
+    <style>
+        #clear {
+            margin-top: 20px;
+            width: 100%;
+        }
+        body {
+            overflow-x:hidden;
+        }
+    </style>
 </head>
 <body >
      <div class="tabs">
@@ -24,6 +33,7 @@
             <div class="container" id="select-container">
                 <div class="row">
                     <div class="col-md-4">
+                        <h3><span class="label">Country <span class="badge"></span></span></h3>
                         <select class="selectpicker" data-size="5" id="country-player">
                             <option></option>
                         </select>
@@ -31,6 +41,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4">
+                        <h3><span class="label">League <span class="badge"></span></span></h3>
                         <select class="selectpicker" data-size="5" id="league-player" disabled>
                             <option></option>
                             <option>rgergreg</option>
@@ -40,18 +51,28 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4">
+                        <h3><span class="label">Team <span class="badge"></span></span></h3>
                         <select class="selectpicker" data-size="5" id="team-player" disabled>
+                            <option></option>
+                            <option>rgergreg</option>
+                            <option>gergerger</option>
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
+                        <h3><span class="label">Player <span class="badge"></span></span></h3>
                         <select class="selectpicker" data-size="5" id="player-player" disabled>
+                            <option></option>
+                            <option>rgergreg</option>
+                            <option>gergerger</option>
                         </select>
                     </div>
                 </div>
                 <div class="row">
-                    <button class="btn btn-info" id="clear" tab-numb="0">Clear all</button>
+                    <div class="col-md-4">
+                        <button class="btn btn-info btn-md" id="clear" tab-numb="0">Clear all</button>
+                    </div>
                 </div>
             </div>
         </div>
