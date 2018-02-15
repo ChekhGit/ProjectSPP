@@ -10,11 +10,12 @@ $.ajax({
             selectCountry.appendChild(newOption);
         }
         $('.selectpicker').selectpicker('refresh');
-        //setOnSelectHandler();
+        setOnSelectHandler();
         setOnClickForClearAllButtons();
         initControlsArray();
     }
 });
+
 function initControlsArray(){
     let tempArray = document.getElementsByClassName('tab-2');
     for (let i = 0; i < tempArray.length; i++) {
@@ -22,36 +23,38 @@ function initControlsArray(){
         controlsArray.push(selectArray);
     }
 }
+
 function setOnClickForClearAllButtons() {
     let tempArray = document.querySelectorAll('#clear');
     for (let i = 0; i < tempArray.length; i++) {
         tempArray[i].addEventListener('click', clearAll);
     }
 }
-// function setOnSelectHandler(){
-//     let selects = document.getElementsByTagName('select');
-//     for (let i = 0; i < selects.length; i++) {
-//         $(selects[i]).on('changed.bs.select',onSelectHandler)
-//     }
-// }
-//
-// function onSelectHandler(event) {
-//     let control = event.currentTarget;
-//     let tabIndex, selectIndex;
-//
-//     for (let i = 0; i < controlsArray.length; i++) {
-//         for (let j = 0; j < controlsArray[i].length; j++) {
-//             if (controlsArray[i][j].getAttribute('id') === control.id){
-//                 tabIndex = i;
-//                 selectIndex = j;
-//             }
-//         }
-//     }
-//     if (controlsArray[tabIndex][selectIndex+1]) {
-//         $(controlsArray[tabIndex][selectIndex+1]).prop('disabled', false);
-//         $(controlsArray[tabIndex][selectIndex+1]).selectpicker('refresh');
-//     }
-// }
+
+function setOnSelectHandler(){
+    let selects = document.getElementsByTagName('select');
+    for (let i = 0; i < selects.length; i++) {
+        $(selects[i]).on('changed.bs.select',onSelectHandler)
+    }
+}
+
+function onSelectHandler(event) {
+    let control = event.currentTarget;
+    let tabIndex, selectIndex;
+
+    for (let i = 0; i < controlsArray.length; i++) {
+        for (let j = 0; j < controlsArray[i].length; j++) {
+            if (controlsArray[i][j].getAttribute('id') === control.id){
+                tabIndex = i;
+                selectIndex = j;
+            }
+        }
+    }
+    if (controlsArray[tabIndex][selectIndex+1]) {
+        $(controlsArray[tabIndex][selectIndex+1]).prop('disabled', false);
+        $(controlsArray[tabIndex][selectIndex+1]).selectpicker('refresh');
+    }
+}
 
 function clearSelectBox(control) {
     if (control.childNodes.length) {
