@@ -1,21 +1,37 @@
 let controlsArray = [];
-$.ajax({
+let dataOrganizer;
+window.onload = function () {
+    initControlsArray();
+    dataOrganizer = new DataOrganizer();
+    dataOrganizer.getData(controlsArray[0][0], 0);
+    dataOrganizer.getData(controlsArray[1][0], 0);
+    setOnSelectHandler();
+    setOnClickForClearAllButtons();
+};
+/*$.ajax({
     url: '/player',
     method: 'GET',
     success: function (data) {
         let selectCountry = document.getElementById('country-player');
         for (let country of data) {
-            var newOption = document.createElement('option');
+            let newOption = document.createElement('option');
             newOption.innerHTML = country['surname'];
             selectCountry.appendChild(newOption);
         }
+        let selectCountry1 = document.getElementById('country-coach');
+        for (let country of data) {
+            let newOption = document.createElement('option');
+            newOption.innerHTML = country['surname'];
+            selectCountry1.appendChild(newOption);
+        }
         updateBadge(0,data.length);
+        updateBadge(4,data.length);
         $('.selectpicker').selectpicker('refresh');
         setOnSelectHandler();
         setOnClickForClearAllButtons();
         initControlsArray();
     }
-});
+});*/
 
 function initControlsArray(){
     let tempArray = document.getElementsByClassName('tab-2');
@@ -26,7 +42,7 @@ function initControlsArray(){
 }
 
 function setOnClickForClearAllButtons() {
-    let tempArray = document.querySelectorAll('#clear');
+    let tempArray = document.querySelectorAll('.clear');
     for (let i = 0; i < tempArray.length; i++) {
         tempArray[i].addEventListener('click', clearAll);
     }
@@ -45,13 +61,15 @@ function onSelectHandler(event) {
 
     for (let i = 0; i < controlsArray.length; i++) {
         for (let j = 0; j < controlsArray[i].length; j++) {
-            if (controlsArray[i][j].getAttribute('id') === control.id){
+            if (controlsArray[i][j]/*.getAttribute('id')*/ === control/*.id*/){
                 tabIndex = i;
                 selectIndex = j;
             }
         }
     }
     if (controlsArray[tabIndex][selectIndex+1]) {
+        let prKey = $(control).val();
+        dataOrganizer.getDataById(controlsArray[tabIndex][selectIndex+1], prKey);
         /*for (let i = selectIndex+1; i < controlsArray[tabIndex].length; i++) {
             clearSelectBox(controlsArray[tabIndex][i]);
             $(controlsArray[tabIndex][i]).selectpicker('refresh');
@@ -86,5 +104,145 @@ function clearAll(event) {
         clearSelectBox(controlsArray[tabIndex][i]);
         $(controlsArray[tabIndex][i]).prop('disabled', true);
         $(controlsArray[tabIndex][i]).selectpicker('refresh');
+    }
+}
+
+class DataOrganizer {
+    getData(controlToLoad, index) {
+        switch (index) {
+            case 0: this._getCountries(controlToLoad);
+                break;
+            case 1: this._getLeagues(controlToLoad);
+                break;
+            case 2: this._getTeams(controlToLoad);
+                break;
+            case 3: this._getPlayers(controlToLoad);
+                break;
+        }
+    }
+    getDataById(controlToLoad, id) {
+        let type = null;
+        for (let i = 0; i < controlsArray.length; i++) {
+            for (let j = 0; j < controlsArray[i].length; j++) {
+                if (controlsArray[i][j] === controlToLoad){
+                    type = controlToLoad.classList[1];
+                }
+            }
+        }
+        switch (type) {
+            case 'league': this._getLeaguesByCountry(controlToLoad, id);
+                break;
+            case 'team': this._getTeamsByLeague(controlToLoad, id);
+                break;
+            case 'player': this._getPlayersByTeam(controlToLoad, id);
+                break;
+        }
+    }
+
+    _getCountries(controlToLoad) {
+        $.ajax({
+            url: '/country',
+            method: 'GET',
+            success: function (data) {
+                for (let country of data) {
+                    let newOption = document.createElement('option');
+                    newOption.setAttribute('value', country['id']);
+                    newOption.innerHTML = country['name'];
+                    controlToLoad.appendChild(newOption);
+                }
+                $(controlToLoad).selectpicker('refresh');
+            }
+        });
+    }
+    _getLeagues(controlToLoad) {
+        $.ajax({
+            url: '/league',
+            method: 'GET',
+            success: function (data) {
+                for (let league of data) {
+                    let newOption = document.createElement('option');
+                    newOption.setAttribute('value', league['id']);
+                    newOption.innerHTML = league['name'];
+                    controlToLoad.appendChild(newOption);
+                }
+                $(controlToLoad).selectpicker('refresh');
+            }
+        });
+    }
+    _getTeams(controlToLoad) {
+        $.ajax({
+            url: '/team',
+            method: 'GET',
+            success: function (data) {
+                for (let team of data) {
+                    let newOption = document.createElement('option');
+                    newOption.setAttribute('value', team['id']);
+                    newOption.innerHTML = team['name'];
+                    controlToLoad.appendChild(newOption);
+                }
+                $(controlToLoad).selectpicker('refresh');
+            }
+        });
+    }
+    _getPlayers(controlToLoad) {
+        $.ajax({
+            url: '/player',
+            method: 'GET',
+            success: function (data) {
+                for (let player of data) {
+                    let newOption = document.createElement('option');
+                    newOption.setAttribute('value', player['id']);
+                    newOption.innerHTML = player['name'] + " " + player['surname'];
+                    controlToLoad.appendChild(newOption);
+                }
+                $(controlToLoad).selectpicker('refresh');
+            }
+        });
+    }
+
+    _getLeaguesByCountry(controlToLoad, countryId){
+        $.ajax({
+            url: '/country/' + countryId +'/league',
+            method: 'GET',
+            success: function (data) {
+                for (let league of data) {
+                    let newOption = document.createElement('option');
+                    newOption.setAttribute('value', league['id']);
+                    newOption.innerHTML = league['name'];
+                    controlToLoad.appendChild(newOption);
+                }
+                $(controlToLoad).selectpicker('refresh');
+            }
+        });
+    }
+    _getTeamsByLeague(controlToLoad, leagueId){
+        $.ajax({
+            url: '/league/' + leagueId +'/team',
+            method: 'GET',
+            success: function (data) {
+                for (let team of data) {
+                    let newOption = document.createElement('option');
+                    newOption.setAttribute('value', team['id']);
+                    newOption.innerHTML = team['name'];
+                    controlToLoad.appendChild(newOption);
+                }
+                $(controlToLoad).selectpicker('refresh');
+            }
+        });
+    }
+    _getPlayersByTeam(controlToLoad, playerId){
+        $.ajax({
+            url: '/team/' + playerId +'/player',
+            method: 'GET',
+            success: function (data) {
+                for (let player of data) {
+                    let newOption = document.createElement('option');
+                    newOption.setAttribute('value', player['id']);
+                    newOption.innerHTML = player['name'] + " " + player['surname'];
+                    controlToLoad.appendChild(newOption);
+                }
+                $(controlToLoad).selectpicker('refresh');
+            }
+        });
     }
 }

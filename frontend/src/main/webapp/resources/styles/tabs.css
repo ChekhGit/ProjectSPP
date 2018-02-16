@@ -40,7 +40,7 @@ body {
     border-bottom: 1px solid #fd264f; }
 .tabs [class^="tab"] [type="radio"]:checked,
 .tabs [class*=" tab"] [type="radio"]:checked {
-    border-bottom: 2px solid #fd264f; }
+    border-bottom: 4px solid #fd264f; }
 .tabs [class^="tab"] [type="radio"]:checked + div,
 .tabs [class*=" tab"] [type="radio"]:checked + div {
     opacity: 1; }
