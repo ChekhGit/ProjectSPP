@@ -43,4 +43,11 @@ public class PlayerDataController {
         PlayerEntity playerEntity = playerService.findById(id);
         return (PlayerViewModel) conversionService.convert(playerEntity, playerEntityTypeDescriptor, playerViewModelTypeDescriptor);
     }
+
+    @RequestMapping(value ="/team/{id}/player", method = RequestMethod.GET)
+    @ResponseBody
+    public List<PlayerViewModel> getAllPlayersByTeamId(@PathVariable int id){
+        List<PlayerEntity> playerEntities = playerService.findByIdTeam(id);
+        return (List<PlayerViewModel>) conversionService.convert(playerEntities, playerEntityListTypeDescriptor, playerViewModelListTypeDescriptor);
+    }
 }

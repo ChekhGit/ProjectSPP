@@ -1,6 +1,8 @@
 package com.spp.chekh.pmfrontend.controller;
 
+import com.spp.chekh.pmbackend.entity.PlayerEntity;
 import com.spp.chekh.pmbackend.entity.PlayerStatisticEntity;
+import com.spp.chekh.pmbackend.service.interfaces.PlayerService;
 import com.spp.chekh.pmbackend.service.interfaces.PlayerStatisticService;
 import com.spp.chekh.pmfrontend.view.model.entity.PlayerStatisticViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class PlayerStatisticDataController {
     private PlayerStatisticService playerStatisticService;
 
     @Autowired
+    private PlayerService playerService;
+
+    @Autowired
     private ConversionService conversionService;
 
     private final TypeDescriptor playerStatisticEntityTypeDescriptor = TypeDescriptor.valueOf(PlayerStatisticEntity.class);
@@ -36,10 +41,17 @@ public class PlayerStatisticDataController {
         return (List<PlayerStatisticViewModel>) conversionService.convert(playerStatisticEntityList, playerStatisticEntityListTypeDescriptor, playerStatisticViewModelListTypeDescriptor);
     }
 
-    @RequestMapping(value = "/player/statistic/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "player/statistic/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public PlayerStatisticViewModel getPlayerStatisticByPlayerId(@PathVariable int id) {
+    public PlayerStatisticViewModel getPlayerStatisticById(@PathVariable int id) {
         PlayerStatisticEntity playerStatisticEntity = playerStatisticService.findById(id);
         return (PlayerStatisticViewModel) conversionService.convert(playerStatisticEntity, playerStatisticEntityTypeDescriptor, playerStatisticViewModelTypeDescriptor);
+    }
+
+    @RequestMapping(value = "/player/{id}/statistic", method = RequestMethod.GET)
+    @ResponseBody
+    public PlayerStatisticViewModel getPlayerStatisticByPlayerId(@PathVariable int id) {
+        PlayerEntity playerEntity = playerService.findById(id);
+        return (PlayerStatisticViewModel) conversionService.convert(playerEntity.getPlayerStatisticByIdPlayerStat(), playerStatisticEntityTypeDescriptor, playerStatisticViewModelTypeDescriptor);
     }
 }

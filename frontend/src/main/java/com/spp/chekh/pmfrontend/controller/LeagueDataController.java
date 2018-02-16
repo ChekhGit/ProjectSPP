@@ -42,4 +42,12 @@ public class LeagueDataController {
         LeagueEntity leagueEntity = leagueService.findById(id);
         return (LeagueViewModel) conversionService.convert(leagueEntity, leagueEntityTypeDescriptor, leagueViewModelTypeDescriptor);
     }
+
+    @RequestMapping(value = "/country/{id}/league", method = RequestMethod.GET)
+    @ResponseBody
+    public List<LeagueViewModel> getAllLeaguesByCountryId(@PathVariable int id) {
+        List<LeagueEntity> leagueEntities = leagueService.findByIdCountry(id);
+        return (List<LeagueViewModel>) conversionService.convert(leagueEntities, leagueEntityListTypeDescriptor, leagueViewModelListTypeDescriptor);
+    }
+
 }

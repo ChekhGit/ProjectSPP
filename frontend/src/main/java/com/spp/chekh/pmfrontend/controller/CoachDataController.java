@@ -43,4 +43,11 @@ public class CoachDataController {
         return (CoachViewModel) conversionService.convert(coachEntity, coachEntityTypeDescriptor, coachViewModelTypeDescriptor);
     }
 
+    @RequestMapping(value = "/team/{id}/coach", method = RequestMethod.GET)
+    @ResponseBody
+    public List<CoachViewModel> getAllCoachesByTeamId(@PathVariable int id) {
+        List<CoachEntity> coachEntities = coachService.findByIdTeam(id);
+        return (List<CoachViewModel>) conversionService.convert(coachEntities, coachEntityListTypeDescriptor, coachViewModelListTypeDescriptor);
+    }
+
 }

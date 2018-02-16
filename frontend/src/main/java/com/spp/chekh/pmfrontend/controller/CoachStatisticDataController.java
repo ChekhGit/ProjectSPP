@@ -1,6 +1,8 @@
 package com.spp.chekh.pmfrontend.controller;
 
+import com.spp.chekh.pmbackend.entity.CoachEntity;
 import com.spp.chekh.pmbackend.entity.CoachStatisticEntity;
+import com.spp.chekh.pmbackend.service.interfaces.CoachService;
 import com.spp.chekh.pmbackend.service.interfaces.CoachStatisticService;
 import com.spp.chekh.pmfrontend.view.model.entity.CoachStatisticViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class CoachStatisticDataController {
 
     @Autowired
     private CoachStatisticService coachStatisticService;
+
+    @Autowired
+    private CoachService coachService;
 
     @Autowired
     private ConversionService conversionService;
@@ -42,5 +47,12 @@ public class CoachStatisticDataController {
     public CoachStatisticViewModel getCoachStatisticByStatisticId(@PathVariable int id) {
         CoachStatisticEntity coachStatisticEntity = coachStatisticService.findById(id);
         return (CoachStatisticViewModel) conversionService.convert(coachStatisticEntity, coachStatisticEntityTypeDescriptor, coachStatisticViewModelTypeDescriptor);
+    }
+
+    @RequestMapping(value = "/coach/{id}/statistic", method = RequestMethod.GET)
+    @ResponseBody
+    public CoachStatisticViewModel getCoachStatisticByCoachId(@PathVariable int id) {
+        CoachEntity coachEntity = coachService.findById(id);
+        return (CoachStatisticViewModel) conversionService.convert(coachEntity.getCoachStatisticByIdStatistic(), coachStatisticEntityTypeDescriptor, coachStatisticViewModelTypeDescriptor);
     }
 }
