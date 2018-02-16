@@ -80,9 +80,9 @@ function onSelectHandler(event) {
     }
 }
 
-function updateBadge(badgeIndex, value) {
-    let badge = document.querySelectorAll('.badge')[badgeIndex];
-    badge.innerHTML = value;
+function updateBadge(control, value) {
+    let labelContainer = $(control).parent().prev();
+    labelContainer[0].getElementsByClassName('badge')[0].innerHTML = value;
 }
 
 function clearSelectBox(control) {
@@ -91,6 +91,7 @@ function clearSelectBox(control) {
                 control.removeChild(control.children[1]);
             }
     }
+    updateBadge(control,'');
 }
 
 function clearAll(event) {
@@ -117,6 +118,7 @@ class DataOrganizer {
             case 3: this._getPlayers(controlToLoad);
                 break;
         }
+
     }
     getDataById(controlToLoad, id) {
         let type = null;
@@ -149,6 +151,7 @@ class DataOrganizer {
                     controlToLoad.appendChild(newOption);
                 }
                 $(controlToLoad).selectpicker('refresh');
+                updateBadge(controlToLoad, data.length);
             }
         });
     }
@@ -164,6 +167,7 @@ class DataOrganizer {
                     controlToLoad.appendChild(newOption);
                 }
                 $(controlToLoad).selectpicker('refresh');
+                updateBadge(controlToLoad, data.length);
             }
         });
     }
@@ -179,6 +183,7 @@ class DataOrganizer {
                     controlToLoad.appendChild(newOption);
                 }
                 $(controlToLoad).selectpicker('refresh');
+                updateBadge(controlToLoad, data.length);
             }
         });
     }
@@ -194,6 +199,7 @@ class DataOrganizer {
                     controlToLoad.appendChild(newOption);
                 }
                 $(controlToLoad).selectpicker('refresh');
+                updateBadge(controlToLoad, data.length);
             }
         });
     }
@@ -210,6 +216,7 @@ class DataOrganizer {
                     controlToLoad.appendChild(newOption);
                 }
                 $(controlToLoad).selectpicker('refresh');
+                updateBadge(controlToLoad, data.length);
             }
         });
     }
@@ -225,6 +232,7 @@ class DataOrganizer {
                     controlToLoad.appendChild(newOption);
                 }
                 $(controlToLoad).selectpicker('refresh');
+                updateBadge(controlToLoad, data.length);
             }
         });
     }
@@ -240,6 +248,7 @@ class DataOrganizer {
                     controlToLoad.appendChild(newOption);
                 }
                 $(controlToLoad).selectpicker('refresh');
+                updateBadge(controlToLoad, data.length);
             }
         });
     }
