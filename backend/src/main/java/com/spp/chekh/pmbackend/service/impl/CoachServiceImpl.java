@@ -26,6 +26,11 @@ public class CoachServiceImpl implements CoachService {
     }
 
     @Override
+    public List<CoachEntity> findByIdTeam(int idTeam) {
+        return coachRepository.findByIdTeam(idTeam);
+    }
+
+    @Override
     public CoachEntity save(CoachEntity entity) {
         return coachRepository.save(entity);
     }

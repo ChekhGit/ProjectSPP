@@ -26,6 +26,11 @@ public class LeagueServiceImpl implements LeagueService {
     }
 
     @Override
+    public List<LeagueEntity> findByIdCountry(int idCountry) {
+        return leagueRepository.findByIdCountry(idCountry);
+    }
+
+    @Override
     public LeagueEntity save(LeagueEntity entity) {
         return leagueRepository.save(entity);
     }

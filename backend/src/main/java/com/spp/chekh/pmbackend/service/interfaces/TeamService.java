@@ -7,6 +7,7 @@ import java.util.List;
 public interface TeamService {
     List<TeamEntity> findAll();
     TeamEntity findById(int id);
+    List<TeamEntity> findByIdLeague(int idLeague);
     TeamEntity save(TeamEntity entity);
     void delete(int id);
 }

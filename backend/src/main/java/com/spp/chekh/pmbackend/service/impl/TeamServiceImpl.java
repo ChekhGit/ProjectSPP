@@ -26,6 +26,11 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
+    public List<TeamEntity> findByIdLeague(int idLeague) {
+        return teamRepository.findByIdLeague(idLeague);
+    }
+
+    @Override
     public TeamEntity save(TeamEntity entity) {
         return teamRepository.save(entity);
     }
