@@ -65,7 +65,7 @@
             </div>
                 <div class="col-lg-offset-1 col-lg-6">
                     <h1 class="name"><span class="label">ERNESTO VALVARDE</span></h1>
-
+                    <h1 class="name"><span class="label goals">ERNESTO VALVARDE</span></h1>
                 </div>
             </div>
         </div>
@@ -77,33 +77,22 @@
                 <div class="col-lg-offset-1 col-lg-4">
                     <div class="row">
                         <h3><span class="label">Country <span class="badge"></span></span></h3>
-                        <select class="selectpicker" data-size="5" id="country-coach">
+                        <select class="selectpicker country" data-size="5" id="country-coach">
                             <option></option>
                         </select>
                     </div>
                     <div class="row">
                         <h3><span class="label">League <span class="badge"></span></span></h3>
-                        <select class="selectpicker" data-size="5" id="league-coach" disabled>
+                        <select class="selectpicker league" data-size="5" id="league-coach" disabled>
                             <option></option>
-                            <option>rgergreg</option>
-                            <option>gergerger</option>
                         </select>
                     </div>
                     <div class="row">
                         <h3><span class="label">Team <span class="badge"></span></span></h3>
-                        <select class="selectpicker" data-size="5" id="team-coach" disabled>
+                        <select class="selectpicker team" data-size="5" id="team-coach" disabled>
                             <option></option>
-                            <option>rgergreg</option>
-                            <option>gergerger</option>
                         </select>
-                    </div>
-                    <%--<div class="row">--%>
-                        <%--<h3><span class="label">Player <span class="badge"></span></span></h3>--%>
-                        <%--<select class="selectpicker" data-size="5" id="player-player" disabled>--%>
-                            <%--<option></option>--%>
-                            <%--<option>rgergreg</option>--%>
-                            <%--<option>gergerger</option>--%>
-                        <%--</select>--%>
+                    </div>>
                     <%--</div>--%>
                     <div class="row">
                         <button class="btn btn-info btn-md clear" tab-numb="1">Clear all</button>

@@ -8,30 +8,6 @@ window.onload = function () {
     setOnSelectHandler();
     setOnClickForClearAllButtons();
 };
-/*$.ajax({
-    url: '/player',
-    method: 'GET',
-    success: function (data) {
-        let selectCountry = document.getElementById('country-player');
-        for (let country of data) {
-            let newOption = document.createElement('option');
-            newOption.innerHTML = country['surname'];
-            selectCountry.appendChild(newOption);
-        }
-        let selectCountry1 = document.getElementById('country-coach');
-        for (let country of data) {
-            let newOption = document.createElement('option');
-            newOption.innerHTML = country['surname'];
-            selectCountry1.appendChild(newOption);
-        }
-        updateBadge(0,data.length);
-        updateBadge(4,data.length);
-        $('.selectpicker').selectpicker('refresh');
-        setOnSelectHandler();
-        setOnClickForClearAllButtons();
-        initControlsArray();
-    }
-});*/
 
 function initControlsArray(){
     let tempArray = document.getElementsByClassName('tab-2');
@@ -61,7 +37,7 @@ function onSelectHandler(event) {
 
     for (let i = 0; i < controlsArray.length; i++) {
         for (let j = 0; j < controlsArray[i].length; j++) {
-            if (controlsArray[i][j]/*.getAttribute('id')*/ === control/*.id*/){
+            if (controlsArray[i][j] === control){
                 tabIndex = i;
                 selectIndex = j;
             }
@@ -71,12 +47,18 @@ function onSelectHandler(event) {
 
         for (let i = selectIndex+1; i < controlsArray[tabIndex].length; i++) {
             clearSelectBox(controlsArray[tabIndex][i]);
+            if (i > selectIndex+1) {
+                $(controlsArray[tabIndex][i]).prop('disabled', true);
+            } else {
+                $(controlsArray[tabIndex][i]).prop('disabled', false);
+            }
             $(controlsArray[tabIndex][i]).selectpicker('refresh');
         }
         let prKey = $(control).val();
         dataOrganizer.getDataById(controlsArray[tabIndex][selectIndex+1], prKey);
-        $(controlsArray[tabIndex][selectIndex+1]).prop('disabled', false);
-        $(controlsArray[tabIndex][selectIndex+1]).selectpicker('refresh');
+    } else {
+        let prKey = $(control).val();
+        dataOrganizer.getData(null, 4, prKey);
     }
 }
 
@@ -107,7 +89,7 @@ function clearAll(event) {
 }
 
 class DataOrganizer {
-    getData(controlToLoad, index) {
+    getData(controlToLoad, index, id) {
         switch (index) {
             case 0: this._getCountries(controlToLoad);
                 break;
@@ -116,6 +98,8 @@ class DataOrganizer {
             case 2: this._getTeams(controlToLoad);
                 break;
             case 3: this._getPlayers(controlToLoad);
+                break;
+            case 4: this._getPlayerStatistic(id);
                 break;
         }
 
@@ -249,6 +233,16 @@ class DataOrganizer {
                 }
                 $(controlToLoad).selectpicker('refresh');
                 updateBadge(controlToLoad, data.length);
+            }
+        });
+    }
+
+    _getPlayerStatistic(playerId){
+        $.ajax({
+            url: '/player/' + playerId +'/statistic',
+            method: 'GET',
+            success: function (data) {
+                document.getElementsByClassName('goals')[0].innerHTML = data['goals'];
             }
         });
     }
