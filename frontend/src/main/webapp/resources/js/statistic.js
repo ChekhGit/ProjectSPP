@@ -68,12 +68,13 @@ function onSelectHandler(event) {
         }
     }
     if (controlsArray[tabIndex][selectIndex+1]) {
-        let prKey = $(control).val();
-        dataOrganizer.getDataById(controlsArray[tabIndex][selectIndex+1], prKey);
-        /*for (let i = selectIndex+1; i < controlsArray[tabIndex].length; i++) {
+
+        for (let i = selectIndex+1; i < controlsArray[tabIndex].length; i++) {
             clearSelectBox(controlsArray[tabIndex][i]);
             $(controlsArray[tabIndex][i]).selectpicker('refresh');
-        }*/
+        }
+        let prKey = $(control).val();
+        dataOrganizer.getDataById(controlsArray[tabIndex][selectIndex+1], prKey);
         $(controlsArray[tabIndex][selectIndex+1]).prop('disabled', false);
         $(controlsArray[tabIndex][selectIndex+1]).selectpicker('refresh');
     }
@@ -86,12 +87,9 @@ function updateBadge(badgeIndex, value) {
 
 function clearSelectBox(control) {
     if (control.childNodes.length) {
-        if (control.childNodes[0].localName !== 'option') {
-            control.removeChild(control.childNodes[0]);
-            while (control.childNodes[1]) {
-                control.removeChild(control.childNodes[1]);
+            while (control.children[1]) {
+                control.removeChild(control.children[1]);
             }
-        }
     }
 }
 
