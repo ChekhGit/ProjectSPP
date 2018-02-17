@@ -2,6 +2,7 @@ package com.spp.chekh.pmfrontend.controller;
 
 import com.spp.chekh.pmbackend.entity.CoachEntity;
 import com.spp.chekh.pmbackend.service.interfaces.CoachService;
+import com.spp.chekh.pmfrontend.view.model.custom.CoachTableViewModel;
 import com.spp.chekh.pmfrontend.view.model.entity.CoachViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
@@ -25,8 +26,9 @@ public class CoachDataController {
 
     private final TypeDescriptor coachEntityListTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(CoachEntity.class));
     private final TypeDescriptor coachViewModelListTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(CoachViewModel.class));
-
+    private final TypeDescriptor coachTableViewModelListTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(CoachTableViewModel.class));
     private final TypeDescriptor coachEntityTypeDescriptor = TypeDescriptor.valueOf(CoachEntity.class);
+    private final TypeDescriptor coachTableViewModelTypeDescriptor = TypeDescriptor.valueOf(CoachTableViewModel.class);
     private final TypeDescriptor coachViewModelTypeDescriptor = TypeDescriptor.valueOf(CoachViewModel.class);
 
     @RequestMapping(value = "/coach", method = RequestMethod.GET)
@@ -38,16 +40,16 @@ public class CoachDataController {
 
     @RequestMapping(value = "/coach/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CoachViewModel getCoachById(@PathVariable int id) {
+    public CoachTableViewModel getCoachById(@PathVariable int id) {
         CoachEntity coachEntity = coachService.findById(id);
-        return (CoachViewModel) conversionService.convert(coachEntity, coachEntityTypeDescriptor, coachViewModelTypeDescriptor);
+        return (CoachTableViewModel) conversionService.convert(coachEntity, coachEntityTypeDescriptor, coachTableViewModelTypeDescriptor);
     }
 
     @RequestMapping(value = "/team/{id}/coach", method = RequestMethod.GET)
     @ResponseBody
-    public List<CoachViewModel> getAllCoachesByTeamId(@PathVariable int id) {
+    public List<CoachTableViewModel> getAllCoachesByTeamId(@PathVariable int id) {
         List<CoachEntity> coachEntities = coachService.findByIdTeam(id);
-        return (List<CoachViewModel>) conversionService.convert(coachEntities, coachEntityListTypeDescriptor, coachViewModelListTypeDescriptor);
+        return (List<CoachTableViewModel>) conversionService.convert(coachEntities, coachEntityListTypeDescriptor, coachTableViewModelListTypeDescriptor);
     }
 
 }

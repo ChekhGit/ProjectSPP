@@ -2,6 +2,7 @@ package com.spp.chekh.pmfrontend.controller;
 
 import com.spp.chekh.pmbackend.entity.PlayerEntity;
 import com.spp.chekh.pmbackend.service.interfaces.PlayerService;
+import com.spp.chekh.pmfrontend.view.model.custom.PlayerTableViewModel;
 import com.spp.chekh.pmfrontend.view.model.entity.PlayerViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
@@ -25,10 +26,10 @@ public class PlayerDataController {
 
     private final TypeDescriptor playerEntityListTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PlayerEntity.class));
     private final TypeDescriptor playerViewModelListTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PlayerViewModel.class));
-
+    private final TypeDescriptor playerTableViewModelListTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PlayerTableViewModel.class));
+    private final TypeDescriptor playerTableViewModelTypeDescriptor = TypeDescriptor.valueOf(PlayerTableViewModel.class);
     private final TypeDescriptor playerEntityTypeDescriptor = TypeDescriptor.valueOf(PlayerEntity.class);
     private final TypeDescriptor playerViewModelTypeDescriptor = TypeDescriptor.valueOf(PlayerViewModel.class);
-
 
     @RequestMapping(value ="/player", method = RequestMethod.GET)
     @ResponseBody
@@ -39,15 +40,15 @@ public class PlayerDataController {
 
     @RequestMapping(value = "/player/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public PlayerViewModel getPlayerById(@PathVariable int id) {
+    public PlayerTableViewModel getPlayerById(@PathVariable int id) {
         PlayerEntity playerEntity = playerService.findById(id);
-        return (PlayerViewModel) conversionService.convert(playerEntity, playerEntityTypeDescriptor, playerViewModelTypeDescriptor);
+        return (PlayerTableViewModel) conversionService.convert(playerEntity, playerEntityTypeDescriptor, playerTableViewModelTypeDescriptor);
     }
 
     @RequestMapping(value ="/team/{id}/player", method = RequestMethod.GET)
     @ResponseBody
-    public List<PlayerViewModel> getAllPlayersByTeamId(@PathVariable int id){
+    public List<PlayerTableViewModel> getAllPlayersByTeamId(@PathVariable int id){
         List<PlayerEntity> playerEntities = playerService.findByIdTeam(id);
-        return (List<PlayerViewModel>) conversionService.convert(playerEntities, playerEntityListTypeDescriptor, playerViewModelListTypeDescriptor);
+        return (List<PlayerTableViewModel>) conversionService.convert(playerEntities, playerEntityListTypeDescriptor, playerTableViewModelListTypeDescriptor);
     }
 }
