@@ -14,7 +14,9 @@
     <link rel="stylesheet" href="../resources/styles/tabs.css">
     <link rel="stylesheet" href="../resources/styles/dropDownList.css">
 
+    <script src="../resources/js/dataOrganizer.js"></script>
     <script src="../resources/js/statistic.js"></script>
+
     <style>
         .clear {
             margin-top: 20px;

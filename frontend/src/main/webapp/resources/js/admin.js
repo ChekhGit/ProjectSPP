@@ -1,9 +1,14 @@
 let controlsArray = [];
+
 window.onload = function () {
     initControlsArray();
     dataOrganizer = new DataOrganizer();
-    dataOrganizer.getData(controlsArray[0][0], 0);
+    dataOrganizer.appendTable(0);
     dataOrganizer.getData(controlsArray[1][0], 0);
+    dataOrganizer.getData(controlsArray[2][0], 0);
+    dataOrganizer.getData(controlsArray[3][0], 0);
+    dataOrganizer.getData(controlsArray[4][0], 0);
+
     setOnSelectHandler();
     setOnClickForClearAllButtons();
 };
@@ -57,7 +62,7 @@ function onSelectHandler(event) {
         dataOrganizer.getDataById(controlsArray[tabIndex][selectIndex+1], prKey);
     } else {
         let prKey = $(control).val();
-        dataOrganizer.getData(null, 4, prKey);
+        dataOrganizer.appendTable(prKey, tabIndex, selectIndex);
     }
 }
 
@@ -68,9 +73,9 @@ function updateBadge(control, value) {
 
 function clearSelectBox(control) {
     if (control.childNodes.length) {
-            while (control.children[1]) {
-                control.removeChild(control.children[1]);
-            }
+        while (control.children[1]) {
+            control.removeChild(control.children[1]);
+        }
     }
     updateBadge(control,'');
 }
