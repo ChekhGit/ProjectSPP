@@ -15,4 +15,9 @@ public class PageController {
     public String goToStatPage() {
         return "statView";
     }
+
+    @RequestMapping(value = "/control", method = RequestMethod.GET)
+    public String goToAdminPage() {
+        return "adminPage";
+    }
 }

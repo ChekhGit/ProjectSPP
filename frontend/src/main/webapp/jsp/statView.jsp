@@ -25,6 +25,13 @@
         }
         .name {
             text-align: center;
+            font-size: larger;
+        }
+        .info {
+            text-align: center;
+        }
+        .info > .row .label{
+font-size: smaller;
         }
     </style>
 </head>
@@ -33,8 +40,9 @@
         <div class="tab-2">
             <label for="tab2-1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Player statistic</label>
             <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
+            <div>
             <div class="container" id="select-container">
-                <div class="col-lg-offset-1 col-lg-4">
+                <div class="col-lg-4">
                 <div class="row">
                         <h3><span class="label">Country <span class="badge"></span></span></h3>
                         <select class="selectpicker country" data-size="5" id="country">
@@ -63,9 +71,41 @@
                         <button class="btn btn-info btn-md clear" tab-numb="0">Clear all</button>
                 </div>
             </div>
-                <div class="col-lg-offset-1 col-lg-6">
-                    <h1 class="name"><span class="label">ERNESTO VALVARDE</span></h1>
-                    <h1 class="name"><span class="label goals">ERNESTO VALVARDE</span></h1>
+                <div class="col-lg-offset-2 col-lg-6 info">
+                    <h1><span class="label name">DAVID VILLA</span></h1>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3><span class="label pos">Position: GK</span></h3>
+                        </div>
+                        <div class="col-md-6">
+                            <h3><span class="label ">Goals: 320</span></h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3><span class="label ">Wins: 20</span></h3>
+                        </div>
+                        <div class="col-md-6">
+                            <h3><span class="label ">Passes: 111</span></h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3><span class="label ">Loses: 51</span></h3>
+                        </div>
+                        <div class="col-md-6">
+                            <h3><span class="label ">Red cards: 2</span></h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3><span class="label ">Draws: 30</span></h3>
+                        </div>
+                        <div class="col-md-6">
+                            <h3><span class="label ">Yellow cards: 12</span></h3>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -74,7 +114,8 @@
             <label for="tab2-2"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Coach statistic</label>
             <input id="tab2-2" name="tabs-two" type="radio">
             <div>
-                <div class="col-lg-offset-1 col-lg-4">
+                <div class="container" >
+                <div class="col-lg-4">
                     <div class="row">
                         <h3><span class="label">Country <span class="badge"></span></span></h3>
                         <select class="selectpicker country" data-size="5" id="country-coach">
@@ -92,16 +133,16 @@
                         <select class="selectpicker team" data-size="5" id="team-coach" disabled>
                             <option></option>
                         </select>
-                    </div>>
-                    <%--</div>--%>
+                    </div>
                     <div class="row">
                         <button class="btn btn-info btn-md clear" tab-numb="1">Clear all</button>
                     </div>
                 </div>
-                <div class="col-lg-offset-1 col-lg-6">
+                <div class="col-lg-offset-2 col-lg-6">
                     <h1 class="name"><span class="label">FERNANDO TORRES</span></h1>
 
                 </div>
+            </div>
             </div>
         </div>
     </div>
