@@ -35,14 +35,14 @@ class DataOrganizer {
                 break;
         }
     }
-    appendTable( tabIndex, selectedIndex) {
+    appendTable( tabIndex, prKey) {
         let table = document.getElementsByClassName('info-table')[tabIndex];
         switch (tabIndex) {
             case 0: this._appendCountryTable(table);
                 break;
-            case 1:
+            case 1: this._appendLeagueTable(table, prKey);
                 break;
-            case 2:
+            case 2: this._appendTeamTable(table,prKey);
                 break;
             case 3:
                 break;
@@ -56,6 +56,62 @@ class DataOrganizer {
             method: 'GET',
             success: function (data) {
                 let tbody = table.getElementsByTagName('tbody')[0];
+                for (let elem of data) {
+                    let tr = document.createElement('tr');
+                    let th = document.createElement('th');
+                    th.setAttribute('scope','row');
+                    th.innerHTML = elem['id'];
+                    let td = document.createElement('td');
+                    td.innerHTML = elem['name'];
+                    tr.appendChild(th);
+                    tr.appendChild(td);
+                    let delBut = document.createElement('td');
+                    delBut.innerHTML = "<button class=\"btn btn-danger btn-md\" tab-numb=\"0\">Delete</button>";
+                    tr.appendChild(delBut);
+                    tbody.appendChild(tr);
+                }
+            }
+        });
+    }
+    _appendLeagueTable(table, prKey) {
+        $.ajax({
+            url: '/league/' + prKey,
+            method: 'GET',
+            success: function (data) {
+                let tbody = table.getElementsByTagName('tbody')[0];
+                if (!data.length) {
+                    let tmp = data;
+                    data = [];
+                    data.push(tmp);
+                }
+                for (let elem of data) {
+                    let tr = document.createElement('tr');
+                    let th = document.createElement('th');
+                    th.setAttribute('scope','row');
+                    th.innerHTML = elem['id'];
+                    let td = document.createElement('td');
+                    td.innerHTML = elem['name'];
+                    tr.appendChild(th);
+                    tr.appendChild(td);
+                    let delBut = document.createElement('td');
+                    delBut.innerHTML = "<button class=\"btn btn-danger btn-md\" tab-numb=\"0\">Delete</button>";
+                    tr.appendChild(delBut);
+                    tbody.appendChild(tr);
+                }
+            }
+        });
+    }
+    _appendTeamTable(table, prKey) {
+        $.ajax({
+            url: '/team/' + prKey,
+            method: 'GET',
+            success: function (data) {
+                let tbody = table.getElementsByTagName('tbody')[0];
+                if (!data.length) {
+                    let tmp = data;
+                    data = [];
+                    data.push(tmp);
+                }
                 for (let elem of data) {
                     let tr = document.createElement('tr');
                     let th = document.createElement('th');

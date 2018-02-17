@@ -47,6 +47,7 @@ function onSelectHandler(event) {
             }
         }
     }
+    clearTable(tabIndex);
     if (controlsArray[tabIndex][selectIndex+1]) {
 
         for (let i = selectIndex+1; i < controlsArray[tabIndex].length; i++) {
@@ -60,10 +61,17 @@ function onSelectHandler(event) {
         }
         let prKey = $(control).val();
         dataOrganizer.getDataById(controlsArray[tabIndex][selectIndex+1], prKey);
+
     } else {
         let prKey = $(control).val();
-        dataOrganizer.appendTable(prKey, tabIndex, selectIndex);
+        dataOrganizer.appendTable(tabIndex, prKey);
     }
+}
+
+function clearTable(tabIndex) {
+    let table = document.getElementsByClassName('info-table')[tabIndex];
+    let tbody = table.getElementsByTagName('tbody')[0];
+    tbody.innerHTML = '';
 }
 
 function updateBadge(control, value) {
