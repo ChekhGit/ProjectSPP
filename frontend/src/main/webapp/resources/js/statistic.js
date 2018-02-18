@@ -43,25 +43,26 @@ function onSelectHandler(event) {
         }
     }
     if (controlsArray[tabIndex][selectIndex+1]) {
-        clearInfoBox(tabIndex);
-        for (let i = selectIndex+1; i < controlsArray[tabIndex].length; i++) {
-            clearSelectBox(controlsArray[tabIndex][i]);
-            if (i > selectIndex+1) {
-                $(controlsArray[tabIndex][i]).prop('disabled', true);
-            } else {
-                $(controlsArray[tabIndex][i]).prop('disabled', false);
-            }
-            $(controlsArray[tabIndex][i]).selectpicker('refresh');
-        }
         let prKey = $(control).val();
-        dataOrganizer.getDataById(controlsArray[tabIndex][selectIndex+1], prKey);
+            clearInfoBox(tabIndex);
+            for (let i = selectIndex + 1; i < controlsArray[tabIndex].length; i++) {
+                clearSelectBox(controlsArray[tabIndex][i]);
+                if (i > selectIndex + 1) {
+                    $(controlsArray[tabIndex][i]).prop('disabled', true);
+                } else {
+                    $(controlsArray[tabIndex][i]).prop('disabled', false);
+                }
+                $(controlsArray[tabIndex][i]).selectpicker('refresh');
+            }
+
+            dataOrganizer.getDataById(controlsArray[tabIndex][selectIndex + 1], prKey);
     } else {
         let prKey = $(control).val();
-        if (tabIndex === 0) {
-            dataOrganizer.getData(null, 4, prKey);
-        } else {
-            dataOrganizer.getData(null, 5, prKey);
-        }
+            if (tabIndex === 0) {
+                dataOrganizer.getData(null, 4, prKey);
+            } else {
+                dataOrganizer.getData(null, 5, prKey);
+            }
     }
 }
 
@@ -82,8 +83,10 @@ function clearSelectBox(control) {
 function clearInfoBox(tabIndex){
     let infoBox = document.getElementsByClassName('info-box')[tabIndex];
     let spans = infoBox.getElementsByTagName('span');
+    let isName = true;
     for (let elem of spans) {
-        elem.innerHTML = '';
+        elem.innerHTML = isName ? ' ' : '';
+        isName = false;
     }
 }
 

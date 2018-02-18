@@ -48,25 +48,25 @@ font-size: smaller;
                 <div class="row">
                         <h3><span class="label">Country <span class="badge"></span></span></h3>
                         <select class="selectpicker country" data-size="5" id="country">
-                            <option></option>
+                            <option disabled></option>
                         </select>
                 </div>
                 <div class="row">
                         <h3><span class="label">League <span class="badge"></span></span></h3>
                         <select class="selectpicker league" data-size="5" id="league" disabled>
-                            <option></option>
+                            <option disabled></option>
                         </select>
                 </div>
                 <div class="row">
                         <h3><span class="label">Team <span class="badge"></span></span></h3>
                         <select class="selectpicker team" data-size="5" id="team" disabled>
-                            <option></option>
+                            <option disabled></option>
                         </select>
                 </div>
                 <div class="row">
                         <h3><span class="label">Player <span class="badge"></span></span></h3>
                         <select class="selectpicker player" data-size="5" id="player" disabled>
-                            <option></option>
+                            <option disabled></option>
                         </select>
                 </div>
                 <div class="row">
@@ -74,7 +74,7 @@ font-size: smaller;
                 </div>
             </div>
                 <div class="col-lg-offset-2 col-lg-6 info-box">
-                    <h1><span class="label name"></span></h1>
+                    <h1><span class="label name"> </span></h1>
                     <div class="row">
                         <div class="col-md-6">
                             <h3>Position: <span class="label position"></span></h3>
@@ -121,19 +121,19 @@ font-size: smaller;
                     <div class="row">
                         <h3><span class="label">Country <span class="badge"></span></span></h3>
                         <select class="selectpicker country" data-size="5" id="country-coach">
-                            <option></option>
+                            <option disabled></option>
                         </select>
                     </div>
                     <div class="row">
                         <h3><span class="label">League <span class="badge"></span></span></h3>
                         <select class="selectpicker league" data-size="5" id="league-coach" disabled>
-                            <option></option>
+                            <option disabled></option>
                         </select>
                     </div>
                     <div class="row">
                         <h3><span class="label">Team <span class="badge"></span></span></h3>
                         <select class="selectpicker team" data-size="5" id="team-coach" disabled>
-                            <option></option>
+                            <option disabled></option>
                         </select>
                     </div>
                     <div class="row">
@@ -141,7 +141,7 @@ font-size: smaller;
                     </div>
                 </div>
                 <div class="col-lg-offset-2 col-lg-6 info-box">
-                    <h1><span class="label name"></span></h1>
+                    <h1><span class="label name"> </span></h1>
                     <div class="row">
                         <div class="col-md-6">
                             <h3>Years old: <span class="label yearsOld"></span></h3>

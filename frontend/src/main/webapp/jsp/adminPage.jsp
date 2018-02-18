@@ -85,7 +85,7 @@
                         <div class="row">
                             <h3><span class="label">Country <span class="badge"></span></span></h3>
                             <select class="selectpicker country" data-size="5">
-                                <option></option>
+                                <option disabled></option>
                             </select>
                         </div>
 
@@ -114,13 +114,13 @@
                         <div class="row">
                             <h3><span class="label">Country <span class="badge"></span></span></h3>
                             <select class="selectpicker country" data-size="5">
-                                <option></option>
+                                <option disabled></option>
                             </select>
                         </div>
                         <div class="row">
                             <h3><span class="label">League <span class="badge"></span></span></h3>
                             <select class="selectpicker league" data-size="5" disabled>
-                                <option></option>
+                                <option disabled></option>
                             </select>
                         </div>
                         <div class="row">
@@ -148,19 +148,19 @@
                         <div class="row">
                             <h3><span class="label">Country <span class="badge"></span></span></h3>
                             <select class="selectpicker country" data-size="5">
-                                <option></option>
+                                <option disabled></option>
                             </select>
                         </div>
                         <div class="row">
                             <h3><span class="label">League <span class="badge"></span></span></h3>
                             <select class="selectpicker league" data-size="5" disabled>
-                                <option></option>
+                                <option disabled></option>
                             </select>
                         </div>
                         <div class="row">
                             <h3><span class="label">Team <span class="badge"></span></span></h3>
                             <select class="selectpicker team" data-size="5" disabled>
-                                <option></option>
+                                <option disabled></option>
                             </select>
                         </div>
 
@@ -198,19 +198,19 @@
                         <div class="row">
                             <h3><span class="label">Country <span class="badge"></span></span></h3>
                             <select class="selectpicker country" data-size="5">
-                                <option></option>
+                                <option disabled></option>
                             </select>
                         </div>
                         <div class="row">
                             <h3><span class="label">League <span class="badge"></span></span></h3>
                             <select class="selectpicker league" data-size="5" disabled>
-                                <option></option>
+                                <option disabled></option>
                             </select>
                         </div>
                         <div class="row">
                             <h3><span class="label">Team <span class="badge"></span></span></h3>
                             <select class="selectpicker team" data-size="5" disabled>
-                                <option></option>
+                                <option disabled></option>
                             </select>
                         </div>
                         <div class="row">
