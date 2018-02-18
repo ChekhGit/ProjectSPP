@@ -14,6 +14,8 @@ class DataOrganizer {
                 break;
             case 4: this._getPlayerStatistic(id);
                 break;
+            case 5: this._getCoachStatistic(id);
+                break;
         }
 
     }
@@ -50,11 +52,7 @@ class DataOrganizer {
                 break;
         }
     }
-    _getDOMTableElem(value, field){
-        let td = document.createElement('td');
-        td.innerHTML = value[field];
-        return td;
-    }
+
     _appendCountryTable(table) {
         $.ajax({
             url: '/country',
@@ -142,7 +140,7 @@ class DataOrganizer {
                     th.innerHTML = elem['id'];
                     tr.appendChild(th);
                     for (let prop in elem) {
-                        if (prop !== 'isStatistic') {
+                        if (prop !== 'idStatistic' && prop !== 'id') {
                             let td = document.createElement('td');
                             td.innerHTML = elem[prop];
                             tr.appendChild(td);
@@ -169,7 +167,7 @@ class DataOrganizer {
                     th.innerHTML = elem['id'];
                     tr.appendChild(th);
                     for (let prop in elem) {
-                        if (prop !== 'isStatistic') {
+                        if (prop !== 'idStatistic' && prop !== 'id') {
                             let td = document.createElement('td');
                             td.innerHTML = elem[prop];
                             tr.appendChild(td);
@@ -300,12 +298,44 @@ class DataOrganizer {
 
     _getPlayerStatistic(playerId){
         $.ajax({
-            url: '/team/' + playerId +'/statistic',
+            url: '/player/' + playerId,
             method: 'GET',
             success: function (data) {
-                document.getElementsByClassName('goals')[0].innerHTML = data['goals'];
+                for (let prop in data) {
+                    if (prop !== 'id' && prop !== 'idStatistic' && prop !== 'surname') {
+                        if (prop === 'name') {
+                            document.getElementsByClassName(prop)[0].innerHTML = (data[prop] + ' ' + data['surname']).toUpperCase();
+                        } else {
+                            document.getElementsByClassName(prop)[0].innerHTML = data[prop];
+                        }
+                    }
+                }
             }
         });
     }
-
+    _getCoachStatistic(coachId){
+        $.ajax({
+            url: '/coach/' + coachId,
+            method: 'GET',
+            success: function (data) {
+                for (let prop in data) {
+                    let index;
+                    switch (prop) {
+                        case 'name': index = 1; break;
+                        case 'drawMatches': index = 1; break;
+                        case 'winMatches': index = 1; break;
+                        case 'lostMatches': index = 1; break;
+                        default: index = 0;
+                    }
+                    if (prop !== 'id' && prop !== 'idStatistic' && prop !== 'surname') {
+                        if (prop === 'name') {
+                            document.getElementsByClassName(prop)[index].innerHTML = (data[prop] + ' ' + data['surname']).toUpperCase();
+                        } else {
+                            document.getElementsByClassName(prop)[index].innerHTML = data[prop];
+                        }
+                    }
+                }
+            }
+        });
+    }
 }

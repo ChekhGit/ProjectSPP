@@ -98,4 +98,5 @@ function clearAll(event) {
         $(controlsArray[tabIndex][i]).prop('disabled', true);
         $(controlsArray[tabIndex][i]).selectpicker('refresh');
     }
+    clearTable(tabIndex);
 }

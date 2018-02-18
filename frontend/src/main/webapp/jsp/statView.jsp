@@ -73,38 +73,38 @@ font-size: smaller;
                         <button class="btn btn-info btn-md clear" tab-numb="0">Clear all</button>
                 </div>
             </div>
-                <div class="col-lg-offset-2 col-lg-6 info">
-                    <h1><span class="label name">DAVID VILLA</span></h1>
+                <div class="col-lg-offset-2 col-lg-6 info-box">
+                    <h1><span class="label name"></span></h1>
                     <div class="row">
                         <div class="col-md-6">
-                            <h3><span class="label pos">Position: GK</span></h3>
+                            <h3>Position: <span class="label position"></span></h3>
                         </div>
                         <div class="col-md-6">
-                            <h3><span class="label ">Goals: 320</span></h3>
+                            <h3>Goals: <span class="label goals"></span></h3>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <h3><span class="label ">Wins: 20</span></h3>
+                            <h3>Wins: <span class="label winMatches"></span></h3>
                         </div>
                         <div class="col-md-6">
-                            <h3><span class="label ">Passes: 111</span></h3>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h3><span class="label ">Loses: 51</span></h3>
-                        </div>
-                        <div class="col-md-6">
-                            <h3><span class="label ">Red cards: 2</span></h3>
+                            <h3>Passes: <span class="label keyPasses"></span></h3>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <h3><span class="label ">Draws: 30</span></h3>
+                            <h3>Loses: <span class="label lostMatches"></span></h3>
                         </div>
                         <div class="col-md-6">
-                            <h3><span class="label ">Yellow cards: 12</span></h3>
+                            <h3>Red cards: <span class="label redCards"></span></h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3>Draws: <span class="label drawMatches"></span></h3>
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Yellow cards: <span class="label yellowCards"></span></h3>
                         </div>
                     </div>
                 </div>
@@ -140,8 +140,29 @@ font-size: smaller;
                         <button class="btn btn-info btn-md clear" tab-numb="1">Clear all</button>
                     </div>
                 </div>
-                <div class="col-lg-offset-2 col-lg-6">
-                    <h1 class="name"><span class="label">FERNANDO TORRES</span></h1>
+                <div class="col-lg-offset-2 col-lg-6 info-box">
+                    <h1><span class="label name"></span></h1>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3>Years old: <span class="label yearsOld"></span></h3>
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Titles: <span class="label titles"></span></h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3>Wins: <span class="label winMatches"></span></h3>
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Draws: <span class="label drawMatches"></span></h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3>Loses: <span class="label lostMatches"></span></h3>
+                        </div>
+                    </div>
 
                 </div>
             </div>

@@ -66,7 +66,13 @@
                     </div>
                     <div class="col-lg-offset-1 col-lg-8 info">
                         <div class="container tbody-box">
-                            <table class="table table-dark info-table"><tbody></tbody></table>
+                            <table class="table table-dark info-table">
+                                <thead><tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Delete</th>
+                                </tr></thead>
+                                <tbody></tbody></table>
                         </div>
                     </div>
                 </div>
@@ -84,12 +90,18 @@
                         </div>
 
                         <div class="row">
-                            <button class="btn btn-info btn-md clear" tab-numb="0">Clear all</button>
+                            <button class="btn btn-info btn-md clear" tab-numb="1">Clear all</button>
                         </div>
                     </div>
                     <div class="col-lg-offset-1 col-lg-8 info">
                         <div class="container tbody-box">
-                            <table class="table table-dark info-table"><tbody></tbody></table>
+                            <table class="table table-dark info-table">
+                                <thead><tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Delete</th>
+                                </tr></thead>
+                                <tbody></tbody></table>
                         </div>
                     </div>
                 </div>
@@ -112,12 +124,18 @@
                             </select>
                         </div>
                         <div class="row">
-                            <button class="btn btn-info btn-md clear" tab-numb="0">Clear all</button>
+                            <button class="btn btn-info btn-md clear" tab-numb="2">Clear all</button>
                         </div>
                     </div>
                     <div class="col-lg-offset-1 col-lg-8 info">
                         <div class="container tbody-box">
-                            <table class="table table-dark info-table"><tbody></tbody></table>
+                            <table class="table table-dark info-table">
+                                <thead><tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Delete</th>
+                                </tr></thead>
+                                <tbody></tbody></table>
                         </div>
                     </div>
                 </div>
@@ -135,24 +153,39 @@
                         </div>
                         <div class="row">
                             <h3><span class="label">League <span class="badge"></span></span></h3>
-                            <select class="selectpicker league" data-size="5">
+                            <select class="selectpicker league" data-size="5" disabled>
                                 <option></option>
                             </select>
                         </div>
                         <div class="row">
                             <h3><span class="label">Team <span class="badge"></span></span></h3>
-                            <select class="selectpicker team" data-size="5">
+                            <select class="selectpicker team" data-size="5" disabled>
                                 <option></option>
                             </select>
                         </div>
 
                         <div class="row">
-                            <button class="btn btn-info btn-md clear" tab-numb="0">Clear all</button>
+                            <button class="btn btn-info btn-md clear" tab-numb="3">Clear all</button>
                         </div>
                     </div>
-                    <div class="col-lg-offset-1 col-lg-8 info">
+                    <div class="col-md-9 info">
                         <div class="container tbody-box">
-                            <table class="table table-dark info-table"><tbody></tbody></table>
+                            <table class="table table-dark info-table">
+                                <thead><tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Surname</th>
+                                    <th>Position</th>
+                                    <th>Lost</th>
+                                    <th>Wins</th>
+                                    <th>Draws</th>
+                                    <th>Goals</th>
+                                    <th>Passes</th>
+                                    <th>Red cards</th>
+                                    <th>Yellow cards</th>
+                                    <th>Delete</th>
+                                </tr></thead>
+                                <tbody></tbody></table>
                         </div>
                     </div>
                 </div>
@@ -170,23 +203,35 @@
                         </div>
                         <div class="row">
                             <h3><span class="label">League <span class="badge"></span></span></h3>
-                            <select class="selectpicker league" data-size="5">
+                            <select class="selectpicker league" data-size="5" disabled>
                                 <option></option>
                             </select>
                         </div>
                         <div class="row">
                             <h3><span class="label">Team <span class="badge"></span></span></h3>
-                            <select class="selectpicker team" data-size="5">
+                            <select class="selectpicker team" data-size="5" disabled>
                                 <option></option>
                             </select>
                         </div>
                         <div class="row">
-                            <button class="btn btn-info btn-md clear" tab-numb="0">Clear all</button>
+                            <button class="btn btn-info btn-md clear" tab-numb="4">Clear all</button>
                         </div>
                     </div>
                     <div class="col-lg-offset-1 col-lg-8 info">
                         <div class="container tbody-box">
-                            <table class="table table-dark info-table"><tbody></tbody></table>
+                            <table class="table table-dark info-table">
+                                <thead><tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Surname</th>
+                                    <th>Years old</th>
+                                    <th>Titles</th>
+                                    <th>Wins</th>
+                                    <th>Lost</th>
+                                    <th>Draws</th>
+                                    <th>Delete</th>
+                                </tr></thead>
+                                <tbody></tbody></table>
                         </div>
                     </div>
                 </div>

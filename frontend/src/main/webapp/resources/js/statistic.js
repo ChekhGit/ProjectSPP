@@ -43,7 +43,7 @@ function onSelectHandler(event) {
         }
     }
     if (controlsArray[tabIndex][selectIndex+1]) {
-
+        clearInfoBox(tabIndex);
         for (let i = selectIndex+1; i < controlsArray[tabIndex].length; i++) {
             clearSelectBox(controlsArray[tabIndex][i]);
             if (i > selectIndex+1) {
@@ -57,7 +57,11 @@ function onSelectHandler(event) {
         dataOrganizer.getDataById(controlsArray[tabIndex][selectIndex+1], prKey);
     } else {
         let prKey = $(control).val();
-        dataOrganizer.getData(null, 4, prKey);
+        if (tabIndex === 0) {
+            dataOrganizer.getData(null, 4, prKey);
+        } else {
+            dataOrganizer.getData(null, 5, prKey);
+        }
     }
 }
 
@@ -75,6 +79,14 @@ function clearSelectBox(control) {
     updateBadge(control,'');
 }
 
+function clearInfoBox(tabIndex){
+    let infoBox = document.getElementsByClassName('info-box')[tabIndex];
+    let spans = infoBox.getElementsByTagName('span');
+    for (let elem of spans) {
+        elem.innerHTML = '';
+    }
+}
+
 function clearAll(event) {
     let button = event.target;
     let tabIndex = button.getAttribute('tab-numb');
@@ -85,4 +97,5 @@ function clearAll(event) {
         $(controlsArray[tabIndex][i]).prop('disabled', true);
         $(controlsArray[tabIndex][i]).selectpicker('refresh');
     }
+    clearInfoBox(tabIndex);
 }
