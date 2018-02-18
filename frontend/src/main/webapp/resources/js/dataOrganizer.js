@@ -44,11 +44,16 @@ class DataOrganizer {
                 break;
             case 2: this._appendTeamTable(table,prKey);
                 break;
-            case 3:
+            case 3: this._appendPlayerTable(table, prKey);
                 break;
-            case 4:
+            case 4: this._appendCoachTable(table, prKey);
                 break;
         }
+    }
+    _getDOMTableElem(value, field){
+        let td = document.createElement('td');
+        td.innerHTML = value[field];
+        return td;
     }
     _appendCountryTable(table) {
         $.ajax({
@@ -75,15 +80,15 @@ class DataOrganizer {
     }
     _appendLeagueTable(table, prKey) {
         $.ajax({
-            url: '/league/' + prKey,
+            url: '/country/'+ prKey +'/league',
             method: 'GET',
             success: function (data) {
                 let tbody = table.getElementsByTagName('tbody')[0];
-                if (!data.length) {
-                    let tmp = data;
-                    data = [];
-                    data.push(tmp);
-                }
+                // if (!data.length) {
+                //     let tmp = data;
+                //     data = [];
+                //     data.push(tmp);
+                // }
                 for (let elem of data) {
                     let tr = document.createElement('tr');
                     let th = document.createElement('th');
@@ -103,15 +108,10 @@ class DataOrganizer {
     }
     _appendTeamTable(table, prKey) {
         $.ajax({
-            url: '/team/' + prKey,
+            url: "/league/"+prKey+"/team",
             method: 'GET',
             success: function (data) {
                 let tbody = table.getElementsByTagName('tbody')[0];
-                if (!data.length) {
-                    let tmp = data;
-                    data = [];
-                    data.push(tmp);
-                }
                 for (let elem of data) {
                     let tr = document.createElement('tr');
                     let th = document.createElement('th');
@@ -121,6 +121,60 @@ class DataOrganizer {
                     td.innerHTML = elem['name'];
                     tr.appendChild(th);
                     tr.appendChild(td);
+                    let delBut = document.createElement('td');
+                    delBut.innerHTML = "<button class=\"btn btn-danger btn-md\" tab-numb=\"0\">Delete</button>";
+                    tr.appendChild(delBut);
+                    tbody.appendChild(tr);
+                }
+            }
+        });
+    }
+    _appendPlayerTable(table, prKey) {
+        $.ajax({
+            url: "/team/"+prKey+"/player",
+            method: 'GET',
+            success: function (data) {
+                let tbody = table.getElementsByTagName('tbody')[0];
+                for (let elem of data) {
+                    let tr = document.createElement('tr');
+                    let th = document.createElement('th');
+                    th.setAttribute('scope','row');
+                    th.innerHTML = elem['id'];
+                    tr.appendChild(th);
+                    for (let prop in elem) {
+                        if (prop !== 'isStatistic') {
+                            let td = document.createElement('td');
+                            td.innerHTML = elem[prop];
+                            tr.appendChild(td);
+                        }
+                    }
+                    let delBut = document.createElement('td');
+                    delBut.innerHTML = "<button class=\"btn btn-danger btn-md\" tab-numb=\"0\">Delete</button>";
+                    tr.appendChild(delBut);
+                    tbody.appendChild(tr);
+                }
+            }
+        });
+    }
+    _appendCoachTable(table, prKey){
+        $.ajax({
+            url: "/team/"+prKey+"/coach",
+            method: 'GET',
+            success: function (data) {
+                let tbody = table.getElementsByTagName('tbody')[0];
+                for (let elem of data) {
+                    let tr = document.createElement('tr');
+                    let th = document.createElement('th');
+                    th.setAttribute('scope','row');
+                    th.innerHTML = elem['id'];
+                    tr.appendChild(th);
+                    for (let prop in elem) {
+                        if (prop !== 'isStatistic') {
+                            let td = document.createElement('td');
+                            td.innerHTML = elem[prop];
+                            tr.appendChild(td);
+                        }
+                    }
                     let delBut = document.createElement('td');
                     delBut.innerHTML = "<button class=\"btn btn-danger btn-md\" tab-numb=\"0\">Delete</button>";
                     tr.appendChild(delBut);
@@ -246,7 +300,7 @@ class DataOrganizer {
 
     _getPlayerStatistic(playerId){
         $.ajax({
-            url: '/player/' + playerId +'/statistic',
+            url: '/team/' + playerId +'/statistic',
             method: 'GET',
             success: function (data) {
                 document.getElementsByClassName('goals')[0].innerHTML = data['goals'];

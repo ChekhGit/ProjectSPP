@@ -145,12 +145,7 @@
                                 <option></option>
                             </select>
                         </div>
-                        <div class="row">
-                            <h3><span class="label">Player <span class="badge"></span></span></h3>
-                            <select class="selectpicker player" data-size="5">
-                                <option></option>
-                            </select>
-                        </div>
+
                         <div class="row">
                             <button class="btn btn-info btn-md clear" tab-numb="0">Clear all</button>
                         </div>
