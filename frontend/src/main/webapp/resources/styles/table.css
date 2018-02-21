@@ -1,0 +1,16 @@
+.table-fixed tbody {
+    height: 230px !important;
+    overflow-y: auto !important;
+    width: 100% !important;
+}
+
+.tbody-box {
+    padding-left: 0px;
+    padding-right: 0px;
+    height: 270px;
+    overflow: auto;
+    margin-top: 20px;
+}
+.btn-danger {
+    margin-top: 2px;
+}

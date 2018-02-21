@@ -1,11 +1,12 @@
 let controlsArray = [];
 window.onload = function () {
     initControlsArray();
+    setOnSelectHandler();
+    setOnClickForClearAllButtons();
     dataOrganizer = new DataOrganizer();
     dataOrganizer.getData(controlsArray[0][0], 0);
     dataOrganizer.getData(controlsArray[1][0], 0);
-    setOnSelectHandler();
-    setOnClickForClearAllButtons();
+
 };
 
 function initControlsArray(){
@@ -57,6 +58,7 @@ function onSelectHandler(event) {
 
             dataOrganizer.getDataById(controlsArray[tabIndex][selectIndex + 1], prKey);
     } else {
+        clearInfoBox(tabIndex);
         let prKey = $(control).val();
             if (tabIndex === 0) {
                 dataOrganizer.getData(null, 4, prKey);

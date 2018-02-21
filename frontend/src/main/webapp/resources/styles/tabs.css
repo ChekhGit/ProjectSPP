@@ -1,14 +1,13 @@
 body {
     background: #191828;
     color: #efedef;
-    font-family: "Roboto", Arial, Helvetica, sans-serif;
     font-size: 16px;
     font-weight: 300;
     letter-spacing: 0.01em;
     line-height: 1.6em;
     margin: 0;
-    padding: 100px; }
-
+    padding: 100px;
+}*
 .tabs {
     display: flex;
 }
@@ -30,10 +29,7 @@ body {
     -moz-appearance: none;
     display: block;
     width: 100%;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out; }
+    -webkit-transition: all 0.3s ease-in-out;}
 .tabs [class^="tab"] [type="radio"]:hover, .tabs [class^="tab"] [type="radio"]:focus,
 .tabs [class*=" tab"] [type="radio"]:hover,
 .tabs [class*=" tab"] [type="radio"]:focus {
