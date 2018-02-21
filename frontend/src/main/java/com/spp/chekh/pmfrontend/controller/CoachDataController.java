@@ -2,6 +2,7 @@ package com.spp.chekh.pmfrontend.controller;
 
 import com.spp.chekh.pmbackend.entity.CoachEntity;
 import com.spp.chekh.pmbackend.service.interfaces.CoachService;
+import com.spp.chekh.pmbackend.service.interfaces.CoachStatisticService;
 import com.spp.chekh.pmfrontend.view.model.custom.CoachTableViewModel;
 import com.spp.chekh.pmfrontend.view.model.entity.CoachViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class CoachDataController {
 
     @Autowired
     private CoachService coachService;
+
+    @Autowired
+    private CoachStatisticService coachStatisticService;
 
     @Autowired
     private ConversionService conversionService;
@@ -52,4 +56,9 @@ public class CoachDataController {
         return (List<CoachTableViewModel>) conversionService.convert(coachEntities, coachEntityListTypeDescriptor, coachTableViewModelListTypeDescriptor);
     }
 
+    @RequestMapping(value = "/coach/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteCoachById(@PathVariable int id){
+        coachStatisticService.delete(id);
+    }
 }

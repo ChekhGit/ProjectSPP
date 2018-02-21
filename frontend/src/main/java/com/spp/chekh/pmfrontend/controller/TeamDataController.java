@@ -49,4 +49,10 @@ public class TeamDataController {
         List<TeamEntity> teamEntityList = teamService.findByIdLeague(id);
         return (List<TeamViewModel>) conversionService.convert(teamEntityList, teamEntityListTypeDescriptor, teamViewModelListTypeDescriptor);
     }
+
+    @RequestMapping(value = "/team/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteTeamById(@PathVariable int id){
+        teamService.delete(id);
+    }
 }

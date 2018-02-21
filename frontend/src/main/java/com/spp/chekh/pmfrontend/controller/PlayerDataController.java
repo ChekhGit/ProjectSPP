@@ -2,6 +2,7 @@ package com.spp.chekh.pmfrontend.controller;
 
 import com.spp.chekh.pmbackend.entity.PlayerEntity;
 import com.spp.chekh.pmbackend.service.interfaces.PlayerService;
+import com.spp.chekh.pmbackend.service.interfaces.PlayerStatisticService;
 import com.spp.chekh.pmfrontend.view.model.custom.PlayerTableViewModel;
 import com.spp.chekh.pmfrontend.view.model.entity.PlayerViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class PlayerDataController {
 
     @Autowired
     private PlayerService playerService;
+
+    @Autowired
+    private PlayerStatisticService playerStatisticService;
 
     @Autowired
     private ConversionService conversionService;
@@ -50,5 +54,11 @@ public class PlayerDataController {
     public List<PlayerTableViewModel> getAllPlayersByTeamId(@PathVariable int id){
         List<PlayerEntity> playerEntities = playerService.findByIdTeam(id);
         return (List<PlayerTableViewModel>) conversionService.convert(playerEntities, playerEntityListTypeDescriptor, playerTableViewModelListTypeDescriptor);
+    }
+
+    @RequestMapping(value = "/player/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deletePlayerById(@PathVariable int id){
+        playerStatisticService.delete(id);
     }
 }

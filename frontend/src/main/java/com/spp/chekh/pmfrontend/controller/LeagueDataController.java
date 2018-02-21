@@ -50,4 +50,9 @@ public class LeagueDataController {
         return (List<LeagueViewModel>) conversionService.convert(leagueEntities, leagueEntityListTypeDescriptor, leagueViewModelListTypeDescriptor);
     }
 
+    @RequestMapping(value = "/league/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteLeagueById(@PathVariable int id){
+        leagueService.delete(id);
+    }
 }
