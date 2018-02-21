@@ -42,4 +42,10 @@ public class CountryDataController {
         CountryEntity countryEntity = countryService.findById(id);
         return (CountryViewModel) conversionService.convert(countryEntity, countryEntityTypeDescriptor, countryViewModelTypeDescriptor);
     }
+
+    @RequestMapping(value = "/country/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteCountryById(@PathVariable int id){
+        countryService.delete(id);
+    }
 }
