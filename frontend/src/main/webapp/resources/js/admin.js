@@ -4,13 +4,31 @@ window.onload = function () {
     initControlsArray();
     dataOrganizer = new DataOrganizer();
     dataOrganizer.appendTable(0);
-    dataOrganizer.getData(controlsArray[1][0], 0);
+    /*dataOrganizer.getData(controlsArray[1][0], 0);
     dataOrganizer.getData(controlsArray[2][0], 0);
     dataOrganizer.getData(controlsArray[3][0], 0);
-    dataOrganizer.getData(controlsArray[4][0], 0);
+    dataOrganizer.getData(controlsArray[4][0], 0);*/
     setOnSelectHandler();
     setOnClickForClearAllButtons();
+    setTabClickHandler();
 };
+
+function setTabClickHandler() {
+    let tabs = document.getElementsByClassName('tab');
+    for (let tab of tabs) {
+        tab.addEventListener('click', function (event) {
+            let currentTab = event.currentTarget;
+            let index = currentTab.getAttribute('number');
+            if (index > 0) {
+                let clearButton = document.getElementsByClassName('clear')[index - 1];
+                let clearEvent = new Event('click');
+                clearButton.dispatchEvent(clearEvent);
+                clearSelectBox(controlsArray[index][0]);
+                dataOrganizer.getData(controlsArray[index][0], 0);
+            }
+        })
+    }
+}
 
 function initControlsArray(){
     let tempArray = document.getElementsByClassName('tab-2');

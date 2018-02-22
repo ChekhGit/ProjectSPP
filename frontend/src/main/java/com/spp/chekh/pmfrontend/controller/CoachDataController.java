@@ -5,6 +5,7 @@ import com.spp.chekh.pmbackend.service.interfaces.CoachService;
 import com.spp.chekh.pmbackend.service.interfaces.CoachStatisticService;
 import com.spp.chekh.pmfrontend.view.model.custom.CoachTableViewModel;
 import com.spp.chekh.pmfrontend.view.model.entity.CoachViewModel;
+import netscape.javascript.JSObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
@@ -39,6 +40,7 @@ public class CoachDataController {
     @ResponseBody
     public List<CoachViewModel> getAllCoaches() {
         List<CoachEntity> coachEntities = coachService.findAll();
+
         return (List<CoachViewModel>) conversionService.convert(coachEntities, coachEntityListTypeDescriptor, coachViewModelListTypeDescriptor);
     }
 

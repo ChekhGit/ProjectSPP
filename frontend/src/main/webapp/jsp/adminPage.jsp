@@ -19,11 +19,11 @@
 <body>
 <div>
     <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#country" aria-controls="home" role="tab" data-toggle="tab">Countries</a></li>
-        <li role="presentation"><a href="#league" aria-controls="profile" role="tab" data-toggle="tab">Leagues</a></li>
-        <li role="presentation"><a href="#team" aria-controls="messages" role="tab" data-toggle="tab">Teams</a></li>
-        <li role="presentation"><a href="#player" aria-controls="settings" role="tab" data-toggle="tab">Players</a></li>
-        <li role="presentation"><a href="#coach" aria-controls="settings" role="tab" data-toggle="tab">Coaches</a></li>
+        <li class="active tab" role="presentation" number="0"><a href="#country" aria-controls="home" role="tab" data-toggle="tab">Countries</a></li>
+        <li class="tab" role="presentation" number="1"><a href="#league" aria-controls="profile" role="tab" data-toggle="tab">Leagues</a></li>
+        <li class="tab" role="presentation" number="2"><a href="#team" aria-controls="messages" role="tab" data-toggle="tab">Teams</a></li>
+        <li class="tab" role="presentation" number="3"><a href="#player" aria-controls="settings" role="tab" data-toggle="tab">Players</a></li>
+        <li class="tab" role="presentation" number="4"><a href="#coach" aria-controls="settings" role="tab" data-toggle="tab">Coaches</a></li>
     </ul>
 
     <div class="tab-content">
