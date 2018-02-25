@@ -4,14 +4,37 @@ window.onload = function () {
     initControlsArray();
     dataOrganizer = new DataOrganizer();
     dataOrganizer.appendTable(0);
-    /*dataOrganizer.getData(controlsArray[1][0], 0);
-    dataOrganizer.getData(controlsArray[2][0], 0);
-    dataOrganizer.getData(controlsArray[3][0], 0);
-    dataOrganizer.getData(controlsArray[4][0], 0);*/
     setOnSelectHandler();
     setOnClickForClearAllButtons();
     setTabClickHandler();
+    setaAddButtonHandlers();
+    setCloseEventOnModalWindow();
+
+    let button = document.getElementById('openPlayerAddModal');
+    button.addEventListener('click', function (e) {
+        dataOrganizer.getPositions();
+    })
 };
+
+function setCloseEventOnModalWindow(){
+    let modals = document.getElementsByClassName('modal');
+    for (let modal of modals) {
+        $('#'+modal.getAttribute('id')).on('hidden.bs.modal', function (e) {
+            $('input').val('');
+        });
+    }
+}
+
+function setaAddButtonHandlers() {
+    let buttons = document.getElementsByClassName('add');
+    for (let button of buttons) {
+        button.addEventListener('click', function (event) {
+            let currenBut = event.currentTarget;
+            let index = currenBut.getAttribute('number');
+            dataOrganizer.addData(index);
+        })
+    }
+}
 
 function setTabClickHandler() {
     let tabs = document.getElementsByClassName('tab');
@@ -48,7 +71,8 @@ function setOnClickForClearAllButtons() {
 function setOnSelectHandler(){
     let selects = document.getElementsByTagName('select');
     for (let i = 0; i < selects.length; i++) {
-        $(selects[i]).on('changed.bs.select',onSelectHandler)
+        if (i !== selects.length-1)
+            $(selects[i]).on('changed.bs.select',onSelectHandler)
     }
 }
 

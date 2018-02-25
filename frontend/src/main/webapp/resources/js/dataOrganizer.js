@@ -1,7 +1,124 @@
 let dataOrganizer;
 
 class DataOrganizer {
+    addData(index) {
+        let modal = document.getElementsByClassName('modal')[index];
+        switch (+index) {
+            case 0: this._addCountry(modal);
+                break;
+            case 1: this._addLeague(modal, index);
+                break;
+            case 2: this._addTeam(modal, index);
+                break;
+            case 3: this._addPlayer(modal, index);
+                break;
+            case 4: this._addCoach(modal, index);
+                break;
+        }
+    }
 
+    _addCountry(modal) {
+        let input = modal.getElementsByTagName('input')[0];
+        let obj = new Object();
+        obj.name = input.value;
+        let json = JSON.stringify(obj);
+        $.ajax({
+            type: "PUT",
+            contentType: "application/json; charset=UTF-8",
+            url:"/country",
+            data: json,
+            success: function (data) {
+                alert("Good")
+            }
+        })
+
+    }
+    _addLeague(modal, index) {
+        let prKey = $(controlsArray[index][0]).val();
+        let input = modal.getElementsByTagName('input')[0];
+        let obj = new Object();
+        obj.name = input.value;
+        obj.countryId = prKey;
+        let json = JSON.stringify(obj);
+        $.ajax({
+            type: "PUT",
+            contentType: "application/json; charset=UTF-8",
+            url:"/league",
+            data: json,
+            success: function (data) {
+                alert("Good")
+            }
+        })
+
+    }
+    _addTeam(modal, index) {
+        let prKey = $(controlsArray[index][1]).val();
+        let input = modal.getElementsByTagName('input')[0];
+        let obj = new Object();
+        obj.name = input.value;
+        obj.leagueId = prKey;
+        let json = JSON.stringify(obj);
+        $.ajax({
+            type: "PUT",
+            contentType: "application/json; charset=UTF-8",
+            url:"/team",
+            data: json,
+            success: function (data) {
+                alert("Good")
+            }
+        })
+
+    }
+    _addPlayer(modal, index) {
+        let prKey = $(controlsArray[index][2]).val();
+        let obj = new Object();
+        obj.name =  modal.getElementsByTagName('input')[0].value;
+        obj.surname =  modal.getElementsByTagName('input')[1].value;
+        obj.lostMatches =  modal.getElementsByTagName('input')[2].value;
+        obj.winMatches =  modal.getElementsByTagName('input')[3].value;
+        obj.drawMatches =  modal.getElementsByTagName('input')[4].value;
+        obj.goals =  modal.getElementsByTagName('input')[5].value;
+        obj.keyPasses =  modal.getElementsByTagName('input')[6].value;
+        obj.redCards =  modal.getElementsByTagName('input')[7].value;
+        obj.yellowCards =  modal.getElementsByTagName('input')[8].value;
+        obj.idTeam = prKey;
+        let posSelect = modal.getElementsByTagName('select');
+        obj.idPosition = $(posSelect).val();
+        let json = JSON.stringify(obj);
+        $.ajax({
+            type: "PUT",
+            contentType: "application/json; charset=UTF-8",
+            url:"/player",
+            data: json,
+            success: function (data) {
+                alert("Good")
+            }
+        })
+
+    }
+    _addCoach(modal, index) {
+        let prKey = $(controlsArray[index][2]).val();
+        let obj = new Object();
+        obj.name =  modal.getElementsByTagName('input')[0].value;
+        obj.surname =  modal.getElementsByTagName('input')[1].value;
+        obj.lostMatches =  modal.getElementsByTagName('input')[4].value;
+        obj.winMatches =  modal.getElementsByTagName('input')[5].value;
+        obj.drawMatches =  modal.getElementsByTagName('input')[6].value;
+        obj.yearsOld =  modal.getElementsByTagName('input')[2].value;
+        obj.titles =  modal.getElementsByTagName('input')[3].value;
+        obj.idTeam = prKey;
+        let json = JSON.stringify(obj);
+        $.ajax({
+            type: "PUT",
+            contentType: "application/json; charset=UTF-8",
+            url:"/coach",
+            data: json,
+            success: function (data) {
+                alert("Good")
+            }
+        })
+
+    }
     getData(controlToLoad, index, id) {
         switch (index) {
             case 0: this._getCountries(controlToLoad);
@@ -441,6 +558,24 @@ class DataOrganizer {
                         }
                     }
                 }
+            }
+        });
+    }
+
+    getPositions() {
+        $.ajax({
+            url: '/position',
+            method: 'GET',
+            success: function (data) {
+                let modal = document.getElementsByClassName('modal')[3];
+                let selectControl = modal.getElementsByTagName('select')[0];
+                for (let pos of data) {
+                    let newOption = document.createElement('option');
+                    newOption.setAttribute('value', pos['id']);
+                    newOption.innerHTML = pos['name'];
+                    selectControl.appendChild(newOption);
+                }
+                $(selectControl).selectpicker('refresh');
             }
         });
     }
