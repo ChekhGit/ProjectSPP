@@ -1,18 +1,19 @@
 package com.spp.chekh.pmfrontend.controller;
 
 import com.spp.chekh.pmbackend.entity.CoachEntity;
+import com.spp.chekh.pmbackend.entity.CoachStatisticEntity;
+import com.spp.chekh.pmbackend.factory.EntityFactory;
 import com.spp.chekh.pmbackend.service.interfaces.CoachService;
 import com.spp.chekh.pmbackend.service.interfaces.CoachStatisticService;
+import com.spp.chekh.pmbackend.service.interfaces.custom.CreationService;
+import com.spp.chekh.pmfrontend.dto.CoachDTO;
 import com.spp.chekh.pmfrontend.view.model.custom.CoachTableViewModel;
 import com.spp.chekh.pmfrontend.view.model.entity.CoachViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,6 +28,12 @@ public class CoachDataController {
 
     @Autowired
     private ConversionService conversionService;
+
+    @Autowired
+    private CreationService creationService;
+
+    @Autowired
+    private EntityFactory entityFactory;
 
     private final TypeDescriptor coachEntityListTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(CoachEntity.class));
     private final TypeDescriptor coachViewModelListTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(CoachViewModel.class));
@@ -60,5 +67,15 @@ public class CoachDataController {
     @ResponseBody
     public void deleteCoachById(@PathVariable int id){
         coachStatisticService.delete(id);
+    }
+
+    @RequestMapping(value = "/coach", method = RequestMethod.PUT)
+    @ResponseBody
+    public void createCoach(@RequestBody CoachDTO coachDTO) {
+        CoachEntity coachEntity = entityFactory.getCoachEntity(coachDTO.getName(),
+                coachDTO.getSurname(), coachDTO.getYearsOld(), coachDTO.getIdTeam());
+        CoachStatisticEntity coachStatisticEntity = entityFactory.getCoachStatisticEntity(coachDTO.getWinMatches(),
+                coachDTO.getLostMatches(), coachDTO.getDrawMatches(), coachDTO.getTitles());
+        creationService.createCoach(coachEntity, coachStatisticEntity);
     }
 }

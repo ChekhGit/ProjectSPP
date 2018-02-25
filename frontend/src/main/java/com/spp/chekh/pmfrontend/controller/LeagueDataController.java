@@ -1,16 +1,16 @@
 package com.spp.chekh.pmfrontend.controller;
 
 import com.spp.chekh.pmbackend.entity.LeagueEntity;
+import com.spp.chekh.pmbackend.factory.EntityFactory;
 import com.spp.chekh.pmbackend.service.interfaces.LeagueService;
+import com.spp.chekh.pmbackend.service.interfaces.custom.CreationService;
+import com.spp.chekh.pmfrontend.dto.LeagueDTO;
 import com.spp.chekh.pmfrontend.view.model.entity.LeagueViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +22,12 @@ public class LeagueDataController {
 
     @Autowired
     private ConversionService conversionService;
+
+    @Autowired
+    private EntityFactory entityFactory;
+
+    @Autowired
+    private CreationService creationService;
 
     private final TypeDescriptor leagueEntityListTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(LeagueEntity.class));
     private final TypeDescriptor leagueViewModelListTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(LeagueViewModel.class));
@@ -54,5 +60,12 @@ public class LeagueDataController {
     @ResponseBody
     public void deleteLeagueById(@PathVariable int id){
         leagueService.delete(id);
+    }
+
+    @RequestMapping(value = "/league", method = RequestMethod.PUT)
+    @ResponseBody
+    public void createLeague(@RequestBody LeagueDTO leagueDTO){
+        LeagueEntity leagueEntity = entityFactory.getLeagueEntity(leagueDTO.getName(), leagueDTO.getCountryId());
+        creationService.createLeague(leagueEntity);
     }
 }
