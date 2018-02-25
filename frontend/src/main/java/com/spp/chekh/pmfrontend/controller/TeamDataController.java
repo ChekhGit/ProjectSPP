@@ -1,16 +1,16 @@
 package com.spp.chekh.pmfrontend.controller;
 
 import com.spp.chekh.pmbackend.entity.TeamEntity;
+import com.spp.chekh.pmbackend.factory.EntityFactory;
 import com.spp.chekh.pmbackend.service.interfaces.TeamService;
+import com.spp.chekh.pmbackend.service.interfaces.custom.CreationService;
+import com.spp.chekh.pmfrontend.dto.TeamDTO;
 import com.spp.chekh.pmfrontend.view.model.entity.TeamViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +22,12 @@ public class TeamDataController {
 
     @Autowired
     private ConversionService conversionService;
+
+    @Autowired
+    private EntityFactory entityFactory;
+
+    @Autowired
+    private CreationService creationService;
 
     private final TypeDescriptor teamEntityTypeDescriptor = TypeDescriptor.valueOf(TeamEntity.class);
     private final TypeDescriptor teamViewModelTypeDescriptor = TypeDescriptor.valueOf(TeamViewModel.class);
@@ -54,5 +60,12 @@ public class TeamDataController {
     @ResponseBody
     public void deleteTeamById(@PathVariable int id){
         teamService.delete(id);
+    }
+
+    @RequestMapping(value = "/team", method = RequestMethod.PUT)
+    @ResponseBody
+    public void createTeam(@RequestBody TeamDTO teamDTO){
+        TeamEntity teamEntity = entityFactory.getTeamEntity(teamDTO.getName(),0, teamDTO.getLeagueId());
+        creationService.createTeam(teamEntity);
     }
 }

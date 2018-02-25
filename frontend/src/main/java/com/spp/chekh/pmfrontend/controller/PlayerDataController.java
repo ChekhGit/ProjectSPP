@@ -1,18 +1,20 @@
 package com.spp.chekh.pmfrontend.controller;
 
 import com.spp.chekh.pmbackend.entity.PlayerEntity;
+import com.spp.chekh.pmbackend.entity.PlayerStatisticEntity;
+import com.spp.chekh.pmbackend.factory.EntityFactory;
+import com.spp.chekh.pmbackend.repository.CoachRepository;
 import com.spp.chekh.pmbackend.service.interfaces.PlayerService;
 import com.spp.chekh.pmbackend.service.interfaces.PlayerStatisticService;
+import com.spp.chekh.pmbackend.service.interfaces.custom.CreationService;
+import com.spp.chekh.pmfrontend.dto.PlayerDTO;
 import com.spp.chekh.pmfrontend.view.model.custom.PlayerTableViewModel;
 import com.spp.chekh.pmfrontend.view.model.entity.PlayerViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,6 +29,12 @@ public class PlayerDataController {
 
     @Autowired
     private ConversionService conversionService;
+
+    @Autowired
+    private EntityFactory entityFactory;
+
+    @Autowired
+    private CreationService creationService;
 
     private final TypeDescriptor playerEntityListTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PlayerEntity.class));
     private final TypeDescriptor playerViewModelListTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PlayerViewModel.class));
@@ -60,5 +68,16 @@ public class PlayerDataController {
     @ResponseBody
     public void deletePlayerById(@PathVariable int id){
         playerStatisticService.delete(id);
+    }
+
+    @RequestMapping(value = "/player", method = RequestMethod.PUT)
+    @ResponseBody
+    public void createPlayer(@RequestBody PlayerDTO playerDTO){
+        PlayerStatisticEntity playerStatisticEntity = entityFactory.getPlayerStatisticEntity(playerDTO.getWinMatches(),
+                playerDTO.getDrawMatches(), playerDTO.getLostMatches(), playerDTO.getGoals(), playerDTO.getKeyPasses(),
+                playerDTO.getYellowCards(), playerDTO.getRedCards());
+        PlayerEntity playerEntity = entityFactory.getPlayerEntity(playerDTO.getName(),
+                playerDTO.getSurname(), playerDTO.getIdTeam(), playerDTO.getIdPosition());
+        creationService.createPlayer(playerEntity, playerStatisticEntity);
     }
 }
