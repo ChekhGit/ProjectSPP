@@ -31,6 +31,11 @@
             <div class="tab-2">
                 <div class="container" id="select-container">
                     <div class="col-md-3">
+                        <div class="row">
+                        <button type="button" class="btn btn-danger col-md-offset-2 col-md-8" data-toggle="modal" data-target="#countryAddModal" style="margin-top: 30px;">
+                            Add
+                        </button>
+                        </div>
                     </div>
                     <div class="col-lg-offset-1 col-lg-8 info">
                         <div class="container tbody-box">
@@ -59,6 +64,11 @@
 
                         <div class="row">
                             <button class="btn btn-info btn-md clear" tab-numb="1">Clear all</button>
+                        </div>
+                        <div class="row">
+                            <button type="button" class="btn btn-danger col-md-offset-2 col-md-8" data-toggle="modal" data-target="#leagueAddModal" style="margin-top: 30px;">
+                                Add
+                            </button>
                         </div>
                     </div>
                     <div class="col-lg-offset-1 col-lg-8 info">
@@ -93,6 +103,11 @@
                         </div>
                         <div class="row">
                             <button class="btn btn-info btn-md clear" tab-numb="2">Clear all</button>
+                        </div>
+                        <div class="row">
+                            <button type="button" class="btn btn-danger col-md-offset-2 col-md-8" data-toggle="modal" data-target="#teamAddModal" style="margin-top: 30px;">
+                                Add
+                            </button>
                         </div>
                     </div>
                     <div class="col-lg-offset-1 col-lg-8 info">
@@ -134,6 +149,11 @@
 
                         <div class="row">
                             <button class="btn btn-info btn-md clear" tab-numb="3">Clear all</button>
+                        </div>
+                        <div class="row">
+                            <button type="button" class="btn btn-danger col-md-offset-2 col-md-8" data-toggle="modal" data-target="#playerAddModal" style="margin-top: 30px;">
+                                Add
+                            </button>
                         </div>
                     </div>
                     <div class="col-md-9 info">
@@ -184,6 +204,11 @@
                         <div class="row">
                             <button class="btn btn-info btn-md clear" tab-numb="4">Clear all</button>
                         </div>
+                        <div class="row">
+                            <button type="button" class="btn btn-danger col-md-offset-2 col-md-8" data-toggle="modal" data-target="#coachAddModal" style="margin-top: 30px;">
+                                Add
+                            </button>
+                        </div>
                     </div>
                     <div class="col-lg-offset-1 col-lg-8 info">
                         <div class="container tbody-box">
@@ -202,6 +227,201 @@
                                 <tbody></tbody></table>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%--Add modal windows--%>
+    <div class="modal fade" id="countryAddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add country</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="country-name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="country-name">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger add" number="0" data-dismiss="modal">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="leagueAddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add league</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="name">
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger add" number="1" data-dismiss="modal">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="teamAddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add team</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label class="col-form-label">Name:</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger add" number="2" data-dismiss="modal">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="playerAddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add player</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row">
+                            <div class="form-group col-md-offset-1 col-md-4">
+                                <label class="col-form-label">Name:</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group col-md-offset-1 col-md-4">
+                                <label class="col-form-label">Surname:</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-offset-1 col-md-9">
+                            <label class="col-form-label">Position:</label>
+                            <select class="selectpicker position" data-size="5">
+                                <option disabled></option>
+                            </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-offset-1 col-md-3">
+                                <label class="col-form-label">Losts:</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="col-form-label">Wins:</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="col-form-label">Draws:</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-offset-1 col-md-4">
+                                <label class="col-form-label">Goals:</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group col-md-offset-1 col-md-4">
+                                <label class="col-form-label">Passes:</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-offset-1 col-md-4">
+                                <label class="col-form-label">Red cards:</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group col-md-offset-1 col-md-4">
+                                <label class="col-form-label">Yellow cards:</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger add" number="3" data-dismiss="modal">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="coachAddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add coach</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row">
+                            <div class="form-group col-md-offset-1 col-md-4">
+                                <label class="col-form-label">Name:</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group col-md-offset-1 col-md-4">
+                                <label class="col-form-label">Surname:</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-offset-1 col-md-4">
+                                <label class="col-form-label">Years old:</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group col-md-offset-1 col-md-4">
+                                <label class="col-form-label">Titles:</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-offset-1 col-md-3">
+                                <label class="col-form-label">Losts:</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="col-form-label">Wins:</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="col-form-label">Draws:</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger add" number="4" data-dismiss="modal">Add</button>
                 </div>
             </div>
         </div>

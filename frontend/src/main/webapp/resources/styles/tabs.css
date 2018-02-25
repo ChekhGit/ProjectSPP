@@ -61,3 +61,7 @@ body {
     margin-left: 100%; }
 .tabs .tab-2:last-child [type="radio"]:checked + div {
     margin-left: -100%; }
+
+form {
+    margin-top: 20px;
+}
