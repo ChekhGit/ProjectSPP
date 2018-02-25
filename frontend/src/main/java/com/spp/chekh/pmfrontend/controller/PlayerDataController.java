@@ -67,7 +67,8 @@ public class PlayerDataController {
     @RequestMapping(value = "/player/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public void deletePlayerById(@PathVariable int id){
-        playerStatisticService.delete(id);
+        PlayerEntity playerEntity = playerService.findById(id);
+        playerStatisticService.delete(playerEntity.getIdPlayerStat());
     }
 
     @RequestMapping(value = "/player", method = RequestMethod.PUT)
