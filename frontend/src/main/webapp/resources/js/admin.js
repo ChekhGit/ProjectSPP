@@ -8,7 +8,6 @@ window.onload = function () {
     dataOrganizer.getData(controlsArray[2][0], 0);
     dataOrganizer.getData(controlsArray[3][0], 0);
     dataOrganizer.getData(controlsArray[4][0], 0);
-
     setOnSelectHandler();
     setOnClickForClearAllButtons();
 };

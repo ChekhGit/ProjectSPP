@@ -53,6 +53,81 @@ class DataOrganizer {
         }
     }
 
+    _deleteRow(tabIndex, rowIndex, prKey){
+        switch (tabIndex) {
+            case 0: this._deleteCountry(tabIndex,rowIndex, prKey);
+                break;
+            case 1: this._deleteLeague(tabIndex,rowIndex, prKey);
+                break;
+            case 2: this._deleteTeam(tabIndex,rowIndex, prKey);
+                break;
+            case 3: this._deletePlayer(tabIndex,rowIndex, prKey);
+                break;
+            case 4: this._deleteCoach(tabIndex,rowIndex, prKey);
+                break;
+        }
+    }
+
+    _deleteCountry(tabIndex, rowIndex, prKey){
+        $.ajax({
+            url: '/country/' + rowIndex,
+            method: 'DELETE',
+            success: function (date) {
+                let table = document.getElementsByClassName('info-table')[tabIndex];
+                let tbody = table.getElementsByTagName('tbody')[0];
+                tbody.innerHTML = '';
+                dataOrganizer.appendTable(tabIndex, prKey);
+            }
+        });
+    }
+    _deleteLeague(tabIndex, rowIndex, prKey){
+        $.ajax({
+            url: '/league/' + rowIndex,
+            method: 'DELETE',
+            success: function (date) {
+                let table = document.getElementsByClassName('info-table')[tabIndex];
+                let tbody = table.getElementsByTagName('tbody')[0];
+                tbody.innerHTML = '';
+                dataOrganizer.appendTable(tabIndex, prKey);
+            }
+        });
+    }
+    _deleteTeam(tabIndex, rowIndex, prKey){
+        $.ajax({
+            url: '/team/' + rowIndex,
+            method: 'DELETE',
+            success: function (date) {
+                let table = document.getElementsByClassName('info-table')[tabIndex];
+                let tbody = table.getElementsByTagName('tbody')[0];
+                tbody.innerHTML = '';
+                dataOrganizer.appendTable(tabIndex, prKey);
+            }
+        });
+    }
+    _deletePlayer(tabIndex, rowIndex, prKey){
+        $.ajax({
+            url: '/player/' + rowIndex,
+            method: 'DELETE',
+            success: function (date) {
+                let table = document.getElementsByClassName('info-table')[tabIndex];
+                let tbody = table.getElementsByTagName('tbody')[0];
+                tbody.innerHTML = '';
+                dataOrganizer.appendTable(tabIndex, prKey);
+            }
+        });
+    }
+    _deleteCoach(tabIndex, rowIndex, prKey){
+        $.ajax({
+            url: '/coach/' + rowIndex,
+            method: 'DELETE',
+            success: function (date) {
+                let table = document.getElementsByClassName('info-table')[tabIndex];
+                let tbody = table.getElementsByTagName('tbody')[0];
+                tbody.innerHTML = '';
+                dataOrganizer.appendTable(tabIndex, prKey);
+            }
+        });
+    }
     _appendCountryTable(table) {
         $.ajax({
             url: '/country',
@@ -69,7 +144,13 @@ class DataOrganizer {
                     tr.appendChild(th);
                     tr.appendChild(td);
                     let delBut = document.createElement('td');
-                    delBut.innerHTML = "<button class=\"btn btn-danger btn-md\" tab-numb=\"0\">Delete</button>";
+                    delBut.innerHTML = "<button class=\"btn btn-danger btn-md\">Delete</button>";
+                    delBut.addEventListener('click', function(event) {
+                        let curButton = event.currentTarget;
+                        let id = curButton.parentNode.firstChild.outerText;
+                        dataOrganizer._deleteRow(0,id);
+                    });
+
                     tr.appendChild(delBut);
                     tbody.appendChild(tr);
                 }
@@ -97,7 +178,13 @@ class DataOrganizer {
                     tr.appendChild(th);
                     tr.appendChild(td);
                     let delBut = document.createElement('td');
-                    delBut.innerHTML = "<button class=\"btn btn-danger btn-md\" tab-numb=\"0\">Delete</button>";
+                    delBut.innerHTML = "<button class=\"btn btn-danger btn-md\" prKey=\""+prKey+"\">Delete</button>";
+                    delBut.addEventListener('click', function(event) {
+                        let curButton = event.currentTarget;
+                        let id = curButton.parentNode.firstChild.outerText;
+                        let prKey = curButton.firstChild.getAttribute('prKey');
+                        dataOrganizer._deleteRow(1,id,prKey);
+                    });
                     tr.appendChild(delBut);
                     tbody.appendChild(tr);
                 }
@@ -120,7 +207,13 @@ class DataOrganizer {
                     tr.appendChild(th);
                     tr.appendChild(td);
                     let delBut = document.createElement('td');
-                    delBut.innerHTML = "<button class=\"btn btn-danger btn-md\" tab-numb=\"0\">Delete</button>";
+                    delBut.innerHTML = "<button class=\"btn btn-danger btn-md\" prKey=\""+prKey+"\">Delete</button>";
+                    delBut.addEventListener('click', function(event) {
+                        let curButton = event.currentTarget;
+                        let id = curButton.parentNode.firstChild.outerText;
+                        let prKey = curButton.firstChild.getAttribute('prKey');
+                        dataOrganizer._deleteRow(2,id, prKey);
+                    });
                     tr.appendChild(delBut);
                     tbody.appendChild(tr);
                 }
@@ -130,7 +223,7 @@ class DataOrganizer {
     _appendPlayerTable(table, prKey) {
         $.ajax({
             url: "/team/"+prKey+"/player",
-            method: 'GET',
+        method: 'GET',
             success: function (data) {
                 let tbody = table.getElementsByTagName('tbody')[0];
                 for (let elem of data) {
@@ -147,7 +240,13 @@ class DataOrganizer {
                         }
                     }
                     let delBut = document.createElement('td');
-                    delBut.innerHTML = "<button class=\"btn btn-danger btn-md\" tab-numb=\"0\">Delete</button>";
+                    delBut.innerHTML = "<button class=\"btn btn-danger btn-md\" prKey=\""+prKey+"\">Delete</button>";
+                    delBut.addEventListener('click', function(event) {
+                        let curButton = event.currentTarget;
+                        let id = curButton.parentNode.firstChild.outerText;
+                        let prKey = curButton.firstChild.getAttribute('prKey');
+                        dataOrganizer._deleteRow(3,id, prKey);
+                    });
                     tr.appendChild(delBut);
                     tbody.appendChild(tr);
                 }
@@ -174,7 +273,13 @@ class DataOrganizer {
                         }
                     }
                     let delBut = document.createElement('td');
-                    delBut.innerHTML = "<button class=\"btn btn-danger btn-md\" tab-numb=\"0\">Delete</button>";
+                    delBut.innerHTML = "<button class=\"btn btn-danger btn-md\" prKey=\""+prKey+"\">Delete</button>";
+                    delBut.addEventListener('click', function(event) {
+                        let curButton = event.currentTarget;
+                        let id = curButton.parentNode.firstChild.outerText;
+                        let prKey = curButton.firstChild.getAttribute('prKey');
+                        dataOrganizer._deleteRow(4,id, prKey);
+                    });
                     tr.appendChild(delBut);
                     tbody.appendChild(tr);
                 }
@@ -315,9 +420,10 @@ class DataOrganizer {
     }
     _getCoachStatistic(coachId){
         $.ajax({
-            url: '/coach/' + coachId,
+            url: '/team/' +coachId + '/coach',
             method: 'GET',
             success: function (data) {
+                data = data[0];
                 for (let prop in data) {
                     let index;
                     switch (prop) {
