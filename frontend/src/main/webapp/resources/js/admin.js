@@ -39,17 +39,24 @@ function setaAddButtonHandlers() {
 function setTabClickHandler() {
     let tabs = document.getElementsByClassName('tab');
     for (let tab of tabs) {
-        tab.addEventListener('click', function (event) {
-            let currentTab = event.currentTarget;
-            let index = currentTab.getAttribute('number');
-            if (index > 0) {
-                let clearButton = document.getElementsByClassName('clear')[index - 1];
-                let clearEvent = new Event('click');
-                clearButton.dispatchEvent(clearEvent);
-                clearSelectBox(controlsArray[index][0]);
-                dataOrganizer.getData(controlsArray[index][0], 0);
-            }
-        })
+        if (tab.getAttribute('number') === '0') {
+            tab.addEventListener('click', function (event) {
+                clearTable(0);
+                dataOrganizer.appendTable(0);
+            })
+        } else {
+            tab.addEventListener('click', function (event) {
+                let currentTab = event.currentTarget;
+                let index = currentTab.getAttribute('number');
+                if (index > 0) {
+                    let clearButton = document.getElementsByClassName('clear')[index - 1];
+                    let clearEvent = new Event('click');
+                    clearButton.dispatchEvent(clearEvent);
+                    clearSelectBox(controlsArray[index][0]);
+                    dataOrganizer.getData(controlsArray[index][0], 0);
+                }
+            })
+        }
     }
 }
 

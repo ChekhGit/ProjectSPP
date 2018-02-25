@@ -4,7 +4,7 @@ class DataOrganizer {
     addData(index) {
         let modal = document.getElementsByClassName('modal')[index];
         switch (+index) {
-            case 0: this._addCountry(modal);
+            case 0: this._addCountry(modal, index);
                 break;
             case 1: this._addLeague(modal, index);
                 break;
@@ -17,7 +17,7 @@ class DataOrganizer {
         }
     }
 
-    _addCountry(modal) {
+    _addCountry(modal, index) {
         let input = modal.getElementsByTagName('input')[0];
         let obj = new Object();
         obj.name = input.value;
@@ -28,7 +28,9 @@ class DataOrganizer {
             url:"/country",
             data: json,
             success: function (data) {
-                alert("Good")
+                let tab = document.getElementsByClassName('tab')[index];
+                let event = new Event('click');
+                tab.dispatchEvent(event);
             }
         })
 
@@ -46,7 +48,8 @@ class DataOrganizer {
             url:"/league",
             data: json,
             success: function (data) {
-                alert("Good")
+                clearTable(+index);
+                dataOrganizer.appendTable(+index,prKey);
             }
         })
 
@@ -64,7 +67,8 @@ class DataOrganizer {
             url:"/team",
             data: json,
             success: function (data) {
-                alert("Good")
+                clearTable(+index);
+                dataOrganizer.appendTable(+index,prKey);
             }
         })
 
@@ -91,7 +95,8 @@ class DataOrganizer {
             url:"/player",
             data: json,
             success: function (data) {
-                alert("Good")
+                clearTable(+index);
+                dataOrganizer.appendTable(+index,prKey);
             }
         })
 
@@ -114,7 +119,8 @@ class DataOrganizer {
             url:"/coach",
             data: json,
             success: function (data) {
-                alert("Good")
+                clearTable(+index);
+                dataOrganizer.appendTable(+index,prKey);
             }
         })
 
