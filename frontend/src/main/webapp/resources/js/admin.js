@@ -109,11 +109,16 @@ function onSelectHandler(event) {
         }
         let prKey = $(control).val();
         dataOrganizer.getDataById(controlsArray[tabIndex][selectIndex+1], prKey);
-
+        changeAddButtonEnable(tabIndex,true);
     } else {
         let prKey = $(control).val();
         dataOrganizer.appendTable(tabIndex, prKey);
+        changeAddButtonEnable(tabIndex,false);
     }
+}
+function changeAddButtonEnable(tabIndex, flag) {
+    let addButton = document.getElementsByClassName('tab-add')[tabIndex];
+    $(addButton).prop('disabled', flag);
 }
 
 function clearTable(tabIndex) {
@@ -147,4 +152,5 @@ function clearAll(event) {
         $(controlsArray[tabIndex][i]).selectpicker('refresh');
     }
     clearTable(tabIndex);
+    changeAddButtonEnable(tabIndex,true);
 }

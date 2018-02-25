@@ -32,7 +32,7 @@
                 <div class="container" id="select-container">
                     <div class="col-md-3">
                         <div class="row">
-                        <button type="button" class="btn btn-danger col-md-offset-2 col-md-8" data-toggle="modal" data-target="#countryAddModal" style="margin-top: 30px;">
+                        <button type="button" class="btn btn-danger col-md-offset-2 col-md-8 tab-add" data-toggle="modal" data-target="#countryAddModal" style="margin-top: 30px;">
                             Add
                         </button>
                         </div>
@@ -66,7 +66,7 @@
                             <button class="btn btn-info btn-md clear" tab-numb="1">Clear all</button>
                         </div>
                         <div class="row">
-                            <button type="button" class="btn btn-danger col-md-8" data-toggle="modal" data-target="#leagueAddModal" style="width:40%; margin-top: 30px;">
+                            <button type="button" class="btn btn-danger col-md-8 tab-add" data-toggle="modal" data-target="#leagueAddModal" style="width:40%; margin-top: 30px;" disabled>
                                 Add
                             </button>
                         </div>
@@ -105,7 +105,7 @@
                             <button class="btn btn-info btn-md clear" tab-numb="2">Clear all</button>
                         </div>
                         <div class="row">
-                            <button type="button" class="btn btn-danger col-md-8" data-toggle="modal" data-target="#teamAddModal" style="width:40%; margin-top: 30px;">
+                            <button type="button" class="btn btn-danger col-md-8 tab-add" data-toggle="modal" data-target="#teamAddModal" style="width:40%; margin-top: 30px;" disabled>
                                 Add
                             </button>
                         </div>
@@ -151,7 +151,7 @@
                             <button class="btn btn-info btn-md clear" tab-numb="3">Clear all</button>
                         </div>
                         <div class="row">
-                            <button type="button" class="btn btn-danger col-md-8" id="openPlayerAddModal" data-toggle="modal" data-target="#playerAddModal" style="width:40%; margin-top: 30px;">
+                            <button type="button" class="btn btn-danger col-md-8 tab-add" id="openPlayerAddModal" data-toggle="modal" data-target="#playerAddModal" style="width:40%; margin-top: 30px;" disabled>
                                 Add
                             </button>
                         </div>
@@ -205,7 +205,7 @@
                             <button class="btn btn-info btn-md clear" tab-numb="4">Clear all</button>
                         </div>
                         <div class="row">
-                            <button type="button" class="btn btn-danger col-md-8" data-toggle="modal" data-target="#coachAddModal" style="width:40%; margin-top: 30px;">
+                            <button type="button" class="btn btn-danger col-md-8 tab-add" data-toggle="modal" data-target="#coachAddModal" style="width:40%; margin-top: 30px;" disabled>
                                 Add
                             </button>
                         </div>
