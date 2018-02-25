@@ -32,6 +32,11 @@ public class CoachStatisticServiceImpl implements CoachStatisticService{
     }
 
     @Override
+    public CoachStatisticEntity findLast() {
+        return coachStatisticRepository.findFirstByOrderByIdDesc();
+    }
+
+    @Override
     public void delete(int id) {
         coachStatisticRepository.delete(id);
     }

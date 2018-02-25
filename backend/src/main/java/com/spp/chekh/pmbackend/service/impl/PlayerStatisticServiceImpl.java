@@ -1,6 +1,7 @@
 package com.spp.chekh.pmbackend.service.impl;
 
 import com.google.common.collect.Lists;
+import com.spp.chekh.pmbackend.entity.CoachStatisticEntity;
 import com.spp.chekh.pmbackend.entity.PlayerStatisticEntity;
 import com.spp.chekh.pmbackend.repository.PlayerStatisticRepository;
 import com.spp.chekh.pmbackend.service.interfaces.PlayerStatisticService;
@@ -28,6 +29,11 @@ public class PlayerStatisticServiceImpl implements PlayerStatisticService {
     @Override
     public PlayerStatisticEntity save(PlayerStatisticEntity entity) {
         return playerStatisticRepository.save(entity);
+    }
+
+    @Override
+    public PlayerStatisticEntity findLast() {
+        return playerStatisticRepository.findFirstByOrderByIdDesc();
     }
 
     @Override

@@ -8,5 +8,6 @@ public interface CoachStatisticService {
     List<CoachStatisticEntity> findAll();
     CoachStatisticEntity findById(int id);
     CoachStatisticEntity save(CoachStatisticEntity entity);
+    CoachStatisticEntity findLast();
     void delete(int id);
 }
