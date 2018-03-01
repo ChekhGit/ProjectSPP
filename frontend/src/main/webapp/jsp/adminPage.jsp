@@ -36,6 +36,9 @@
                             Add
                         </button>
                         </div>
+                        <div class="row">
+                            <button class="btn btn-info genDoc" onclick="location.href='/team'">Get Document</button>
+                        </div>
                     </div>
                     <div class="col-lg-offset-1 col-lg-8 info">
                         <div class="container tbody-box">
@@ -69,6 +72,9 @@
                             <button type="button" class="btn btn-danger col-md-8 tab-add" data-toggle="modal" data-target="#leagueAddModal" style="width:40%; margin-top: 30px;" disabled>
                                 Add
                             </button>
+                        </div>
+                        <div class="row">
+                            <button class="btn btn-info genDoc" onclick="location.href='/team'" disabled>Get Document</button>
                         </div>
                     </div>
                     <div class="col-lg-offset-1 col-lg-8 info">
@@ -108,6 +114,9 @@
                             <button type="button" class="btn btn-danger col-md-8 tab-add" data-toggle="modal" data-target="#teamAddModal" style="width:40%; margin-top: 30px;" disabled>
                                 Add
                             </button>
+                        </div>
+                        <div class="row">
+                            <button class="btn btn-info genDoc" onclick="location.href='/team'" style="width:40%; margin-top: 30px;" disabled>Get Document</button>
                         </div>
                     </div>
                     <div class="col-lg-offset-1 col-lg-8 info">
@@ -154,6 +163,9 @@
                             <button type="button" class="btn btn-danger col-md-8 tab-add" id="openPlayerAddModal" data-toggle="modal" data-target="#playerAddModal" style="width:40%; margin-top: 30px;" disabled>
                                 Add
                             </button>
+                        </div>
+                        <div class="row">
+                            <button class="btn btn-info genDoc" onclick="location.href='/team'" style="width:40%; margin-top: 30px;" disabled>Get Document</button>
                         </div>
                     </div>
                     <div class="col-md-9 info">
@@ -208,6 +220,9 @@
                             <button type="button" class="btn btn-danger col-md-8 tab-add" data-toggle="modal" data-target="#coachAddModal" style="width:40%; margin-top: 30px;" disabled>
                                 Add
                             </button>
+                        </div>
+                        <div class="row">
+                            <button class="btn btn-info genDoc" onclick="location.href='/team'" style="width:40%; margin-top: 30px;" disabled>Get Document</button>
                         </div>
                     </div>
                     <div class="col-lg-offset-1 col-lg-8 info">

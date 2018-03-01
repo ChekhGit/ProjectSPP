@@ -110,10 +110,14 @@ function onSelectHandler(event) {
         let prKey = $(control).val();
         dataOrganizer.getDataById(controlsArray[tabIndex][selectIndex+1], prKey);
         changeAddButtonEnable(tabIndex,true);
+        let button = document.getElementsByClassName('genDoc')[tabIndex];
+        $(button).prop('disabled', true);
     } else {
         let prKey = $(control).val();
         dataOrganizer.appendTable(tabIndex, prKey);
         changeAddButtonEnable(tabIndex,false);
+        let button = document.getElementsByClassName('genDoc')[tabIndex];
+        $(button).prop('disabled', false);
     }
 }
 function changeAddButtonEnable(tabIndex, flag) {
@@ -153,4 +157,6 @@ function clearAll(event) {
     }
     clearTable(tabIndex);
     changeAddButtonEnable(tabIndex,true);
+    let button = document.getElementsByClassName('genDoc')[tabIndex];
+    $(button).prop('disabled', true);
 }
