@@ -45,6 +45,7 @@ function onSelectHandler(event) {
     }
     if (controlsArray[tabIndex][selectIndex+1]) {
         let prKey = $(control).val();
+        changeAddButtonEnable(tabIndex,true);
             clearInfoBox(tabIndex);
             for (let i = selectIndex + 1; i < controlsArray[tabIndex].length; i++) {
                 clearSelectBox(controlsArray[tabIndex][i]);
@@ -60,14 +61,20 @@ function onSelectHandler(event) {
     } else {
         clearInfoBox(tabIndex);
         let prKey = $(control).val();
-            if (tabIndex === 0) {
-                dataOrganizer.getData(null, 4, prKey);
-            } else {
-                dataOrganizer.getData(null, 5, prKey);
-            }
+        if (tabIndex === 0) {
+            dataOrganizer.getData(null, 4, prKey);
+        } else {
+            dataOrganizer.getData(null, 5, prKey);
+        }
+        //changeAddButtonEnable(tabIndex,false);
+        let button = document.getElementsByClassName('genDoc')[tabIndex];
+        $(button).prop('disabled', false);
     }
 }
-
+function changeAddButtonEnable(tabIndex, flag) {
+    let addButton = document.getElementsByClassName('genDoc')[tabIndex];
+    $(addButton).prop('disabled', flag);
+}
 function updateBadge(control, value) {
     let labelContainer = $(control).parent().prev();
     labelContainer[0].getElementsByClassName('badge')[0].innerHTML = value;
@@ -103,4 +110,5 @@ function clearAll(event) {
         $(controlsArray[tabIndex][i]).selectpicker('refresh');
     }
     clearInfoBox(tabIndex);
+    changeAddButtonEnable(tabIndex,true);
 }

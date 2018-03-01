@@ -65,6 +65,9 @@
                         <div class="row">
                                 <button class="btn btn-info btn-md clear" tab-numb="0">Clear all</button>
                         </div>
+                        <div class="row">
+                            <button class="btn btn-info genDoc" onclick="location.href='/team'" disabled>Get Document</button>
+                        </div>
                     </div>
                     <div class="col-lg-offset-2 col-lg-6 info-box">
                         <h1><span class="label name"> </span></h1>
@@ -130,6 +133,9 @@
                         </div>
                         <div class="row">
                             <button class="btn btn-info btn-md clear" tab-numb="1">Clear all</button>
+                        </div>
+                        <div class="row">
+                            <a class="btn btn-info genDoc" href="/team" disabled>Get Document</a>
                         </div>
                     </div>
                     <div class="col-lg-offset-2 col-lg-6 info-box">
