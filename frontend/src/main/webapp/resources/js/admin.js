@@ -1,5 +1,4 @@
 let controlsArray = [];
-
 window.onload = function () {
     initControlsArray();
     dataOrganizer = new DataOrganizer();
@@ -157,6 +156,6 @@ function clearAll(event) {
     }
     clearTable(tabIndex);
     changeAddButtonEnable(tabIndex,true);
-    let button = document.getElementsByClassName('genDoc')[tabIndex];
-    $(button).prop('disabled', true);
+    let genDocButton = document.getElementsByClassName('genDoc')[tabIndex];
+    $(genDocButton).prop('disabled', true);
 }
