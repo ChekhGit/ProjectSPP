@@ -1,6 +1,14 @@
 let dataOrganizer;
 
 class DataOrganizer {
+    isCorrectFields(obj) {
+        for (let field in obj) {
+            if (obj[field] === "" || obj[field] === null) {
+                return false;
+            }
+        }
+        return true;
+    }
     addData(index) {
         let modal = document.getElementsByClassName('modal')[index];
         switch (+index) {
@@ -21,18 +29,22 @@ class DataOrganizer {
         let input = modal.getElementsByTagName('input')[0];
         let obj = new Object();
         obj.name = input.value;
-        let json = JSON.stringify(obj);
-        $.ajax({
-            type: "PUT",
-            contentType: "application/json; charset=UTF-8",
-            url:"/country",
-            data: json,
-            success: function (data) {
-                let tab = document.getElementsByClassName('tab')[index];
-                let event = new Event('click');
-                tab.dispatchEvent(event);
-            }
-        })
+        if (this.isCorrectFields(obj)) {
+            let json = JSON.stringify(obj);
+            $.ajax({
+                type: "PUT",
+                contentType: "application/json; charset=UTF-8",
+                url: "/country",
+                data: json,
+                success: function (data) {
+                    let tab = document.getElementsByClassName('tab')[index];
+                    let event = new Event('click');
+                    tab.dispatchEvent(event);
+                }
+            })
+        } else {
+            alert('You have empty fields! Check it.')
+        }
 
     }
     _addLeague(modal, index) {
@@ -41,17 +53,21 @@ class DataOrganizer {
         let obj = new Object();
         obj.name = input.value;
         obj.countryId = prKey;
-        let json = JSON.stringify(obj);
-        $.ajax({
-            type: "PUT",
-            contentType: "application/json; charset=UTF-8",
-            url:"/league",
-            data: json,
-            success: function (data) {
-                clearTable(+index);
-                dataOrganizer.appendTable(+index,prKey);
-            }
-        })
+        if (this.isCorrectFields(obj)) {
+            let json = JSON.stringify(obj);
+            $.ajax({
+                type: "PUT",
+                contentType: "application/json; charset=UTF-8",
+                url: "/league",
+                data: json,
+                success: function (data) {
+                    clearTable(+index);
+                    dataOrganizer.appendTable(+index, prKey);
+                }
+            })
+        } else {
+            alert('You have empty fields! Check it.')
+        }
 
     }
     _addTeam(modal, index) {
@@ -60,17 +76,21 @@ class DataOrganizer {
         let obj = new Object();
         obj.name = input.value;
         obj.leagueId = prKey;
-        let json = JSON.stringify(obj);
-        $.ajax({
-            type: "PUT",
-            contentType: "application/json; charset=UTF-8",
-            url:"/team",
-            data: json,
-            success: function (data) {
-                clearTable(+index);
-                dataOrganizer.appendTable(+index,prKey);
-            }
-        })
+        if (this.isCorrectFields(obj)) {
+            let json = JSON.stringify(obj);
+            $.ajax({
+                type: "PUT",
+                contentType: "application/json; charset=UTF-8",
+                url: "/team",
+                data: json,
+                success: function (data) {
+                    clearTable(+index);
+                    dataOrganizer.appendTable(+index, prKey);
+                }
+            })
+        } else {
+            alert('You have empty fields! Check it.')
+        }
 
     }
     _addPlayer(modal, index) {
@@ -88,17 +108,21 @@ class DataOrganizer {
         obj.idTeam = prKey;
         let posSelect = modal.getElementsByTagName('select');
         obj.idPosition = $(posSelect).val();
-        let json = JSON.stringify(obj);
-        $.ajax({
-            type: "PUT",
-            contentType: "application/json; charset=UTF-8",
-            url:"/player",
-            data: json,
-            success: function (data) {
-                clearTable(+index);
-                dataOrganizer.appendTable(+index,prKey);
-            }
-        })
+        if (this.isCorrectFields(obj)) {
+            let json = JSON.stringify(obj);
+            $.ajax({
+                type: "PUT",
+                contentType: "application/json; charset=UTF-8",
+                url: "/player",
+                data: json,
+                success: function (data) {
+                    clearTable(+index);
+                    dataOrganizer.appendTable(+index, prKey);
+                }
+            })
+        } else {
+            alert('You have empty fields! Check it.')
+        }
 
     }
     _addCoach(modal, index) {
@@ -112,17 +136,21 @@ class DataOrganizer {
         obj.yearsOld =  modal.getElementsByTagName('input')[2].value;
         obj.titles =  modal.getElementsByTagName('input')[3].value;
         obj.idTeam = prKey;
-        let json = JSON.stringify(obj);
-        $.ajax({
-            type: "PUT",
-            contentType: "application/json; charset=UTF-8",
-            url:"/coach",
-            data: json,
-            success: function (data) {
-                clearTable(+index);
-                dataOrganizer.appendTable(+index,prKey);
-            }
-        })
+        if (this.isCorrectFields(obj)) {
+            let json = JSON.stringify(obj);
+            $.ajax({
+                type: "PUT",
+                contentType: "application/json; charset=UTF-8",
+                url: "/coach",
+                data: json,
+                success: function (data) {
+                    clearTable(+index);
+                    dataOrganizer.appendTable(+index, prKey);
+                }
+            })
+        } else {
+            alert('You have empty fields! Check it.')
+        }
 
     }
     getData(controlToLoad, index, id) {

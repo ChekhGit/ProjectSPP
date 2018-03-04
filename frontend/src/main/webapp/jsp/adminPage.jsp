@@ -258,11 +258,12 @@
                 </div>
                 <div class="modal-body">
                     <form>
-                        <div class="form-group">
+                        <div class="form-group" id="azaza">
                             <label for="country-name" class="col-form-label">Name:</label>
-                            <input type="text" class="form-control" id="country-name">
+                            <input type="text" class="form-control" id="country-name"  required>
                         </div>
                     </form>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger add" number="0" data-dismiss="modal">Add</button>
