@@ -8,6 +8,7 @@ public interface PlayerService {
     List<PlayerEntity> findAll();
     PlayerEntity findById(int id);
     List<PlayerEntity> findByIdTeam(int idTeam);
+    List<PlayerEntity> findAllByLeagueId(int leagueId);
     PlayerEntity save(PlayerEntity entity);
     void delete(int id);
 }

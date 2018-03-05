@@ -31,6 +31,11 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
+    public List<PlayerEntity> findAllByLeagueId(int leagueId) {
+        return playerRepository.findAllByLeagueId(leagueId);
+    }
+
+    @Override
     public PlayerEntity save(PlayerEntity entity) {
         return playerRepository.save(entity);
     }
