@@ -31,6 +31,11 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
+    public List<TeamEntity> findAllByCountryId(int countryId) {
+        return teamRepository.findAllByCountryId(countryId);
+    }
+
+    @Override
     public TeamEntity save(TeamEntity entity) {
         return teamRepository.save(entity);
     }
