@@ -1,6 +1,31 @@
 let dataOrganizer;
-
+let cacheObject = {
+    countries:[],
+    leagues:[],
+    teams:[],
+    players:[],
+    coaches:[]
+};
 class DataOrganizer {
+    isCorrectFields(obj, type) {
+        for (let field in obj) {
+            if (obj[field] === "" || obj[field] === null) {
+                return false;
+            }
+        }
+        let dataToCompare;
+        if (type === "players" || type === "coaches") {
+            dataToCompare = obj["name"] + obj["surname"];
+        } else {
+            dataToCompare = obj["name"];
+        }
+        for (let field of cacheObject[type]) {
+            if (field.trim().toLowerCase() === dataToCompare.trim().toLowerCase()) {
+                return false;
+            }
+        }
+        return true;
+    }
     addData(index) {
         let modal = document.getElementsByClassName('modal')[index];
         switch (+index) {
@@ -21,18 +46,22 @@ class DataOrganizer {
         let input = modal.getElementsByTagName('input')[0];
         let obj = new Object();
         obj.name = input.value;
-        let json = JSON.stringify(obj);
-        $.ajax({
-            type: "PUT",
-            contentType: "application/json; charset=UTF-8",
-            url:"/country",
-            data: json,
-            success: function (data) {
-                let tab = document.getElementsByClassName('tab')[index];
-                let event = new Event('click');
-                tab.dispatchEvent(event);
-            }
-        })
+        if (this.isCorrectFields(obj, "countries")) {
+            let json = JSON.stringify(obj);
+            $.ajax({
+                type: "PUT",
+                contentType: "application/json; charset=UTF-8",
+                url: "/country",
+                data: json,
+                success: function (data) {
+                    let tab = document.getElementsByClassName('tab')[index];
+                    let event = new Event('click');
+                    tab.dispatchEvent(event);
+                }
+            })
+        } else {
+            alert('You have empty fields! Check it.')
+        }
 
     }
     _addLeague(modal, index) {
@@ -41,17 +70,21 @@ class DataOrganizer {
         let obj = new Object();
         obj.name = input.value;
         obj.countryId = prKey;
-        let json = JSON.stringify(obj);
-        $.ajax({
-            type: "PUT",
-            contentType: "application/json; charset=UTF-8",
-            url:"/league",
-            data: json,
-            success: function (data) {
-                clearTable(+index);
-                dataOrganizer.appendTable(+index,prKey);
-            }
-        })
+        if (this.isCorrectFields(obj, "leagues")) {
+            let json = JSON.stringify(obj);
+            $.ajax({
+                type: "PUT",
+                contentType: "application/json; charset=UTF-8",
+                url: "/league",
+                data: json,
+                success: function (data) {
+                    clearTable(+index);
+                    dataOrganizer.appendTable(+index, prKey);
+                }
+            })
+        } else {
+            alert('You have empty fields! Check it.')
+        }
 
     }
     _addTeam(modal, index) {
@@ -60,17 +93,21 @@ class DataOrganizer {
         let obj = new Object();
         obj.name = input.value;
         obj.leagueId = prKey;
-        let json = JSON.stringify(obj);
-        $.ajax({
-            type: "PUT",
-            contentType: "application/json; charset=UTF-8",
-            url:"/team",
-            data: json,
-            success: function (data) {
-                clearTable(+index);
-                dataOrganizer.appendTable(+index,prKey);
-            }
-        })
+        if (this.isCorrectFields(obj, "teams")) {
+            let json = JSON.stringify(obj);
+            $.ajax({
+                type: "PUT",
+                contentType: "application/json; charset=UTF-8",
+                url: "/team",
+                data: json,
+                success: function (data) {
+                    clearTable(+index);
+                    dataOrganizer.appendTable(+index, prKey);
+                }
+            })
+        } else {
+            alert('You have empty fields! Check it.')
+        }
 
     }
     _addPlayer(modal, index) {
@@ -88,17 +125,21 @@ class DataOrganizer {
         obj.idTeam = prKey;
         let posSelect = modal.getElementsByTagName('select');
         obj.idPosition = $(posSelect).val();
-        let json = JSON.stringify(obj);
-        $.ajax({
-            type: "PUT",
-            contentType: "application/json; charset=UTF-8",
-            url:"/player",
-            data: json,
-            success: function (data) {
-                clearTable(+index);
-                dataOrganizer.appendTable(+index,prKey);
-            }
-        })
+        if (this.isCorrectFields(obj, "players")) {
+            let json = JSON.stringify(obj);
+            $.ajax({
+                type: "PUT",
+                contentType: "application/json; charset=UTF-8",
+                url: "/player",
+                data: json,
+                success: function (data) {
+                    clearTable(+index);
+                    dataOrganizer.appendTable(+index, prKey);
+                }
+            })
+        } else {
+            alert('You have empty fields! Check it.')
+        }
 
     }
     _addCoach(modal, index) {
@@ -112,17 +153,21 @@ class DataOrganizer {
         obj.yearsOld =  modal.getElementsByTagName('input')[2].value;
         obj.titles =  modal.getElementsByTagName('input')[3].value;
         obj.idTeam = prKey;
-        let json = JSON.stringify(obj);
-        $.ajax({
-            type: "PUT",
-            contentType: "application/json; charset=UTF-8",
-            url:"/coach",
-            data: json,
-            success: function (data) {
-                clearTable(+index);
-                dataOrganizer.appendTable(+index,prKey);
-            }
-        })
+        if (this.isCorrectFields(obj, "coaches")) {
+            let json = JSON.stringify(obj);
+            $.ajax({
+                type: "PUT",
+                contentType: "application/json; charset=UTF-8",
+                url: "/coach",
+                data: json,
+                success: function (data) {
+                    clearTable(+index);
+                    dataOrganizer.appendTable(+index, prKey);
+                }
+            })
+        } else {
+            alert('You have empty fields! Check it.')
+        }
 
     }
     getData(controlToLoad, index, id) {
@@ -256,8 +301,10 @@ class DataOrganizer {
             url: '/country',
             method: 'GET',
             success: function (data) {
+                cacheObject.countries = [];
                 let tbody = table.getElementsByTagName('tbody')[0];
                 for (let elem of data) {
+                    cacheObject.countries.push(elem["name"]);
                     let tr = document.createElement('tr');
                     let th = document.createElement('th');
                     th.setAttribute('scope','row');
@@ -285,6 +332,7 @@ class DataOrganizer {
             url: '/country/'+ prKey +'/league',
             method: 'GET',
             success: function (data) {
+                cacheObject.leagues = [];
                 let tbody = table.getElementsByTagName('tbody')[0];
                 // if (!data.length) {
                 //     let tmp = data;
@@ -292,6 +340,7 @@ class DataOrganizer {
                 //     data.push(tmp);
                 // }
                 for (let elem of data) {
+                    cacheObject.leagues.push(elem["name"]);
                     let tr = document.createElement('tr');
                     let th = document.createElement('th');
                     th.setAttribute('scope','row');
@@ -319,8 +368,10 @@ class DataOrganizer {
             url: "/league/"+prKey+"/team",
             method: 'GET',
             success: function (data) {
+                cacheObject.teams = [];
                 let tbody = table.getElementsByTagName('tbody')[0];
                 for (let elem of data) {
+                    cacheObject.teams.push(elem["name"]);
                     let tr = document.createElement('tr');
                     let th = document.createElement('th');
                     th.setAttribute('scope','row');
@@ -348,8 +399,10 @@ class DataOrganizer {
             url: "/team/"+prKey+"/player",
         method: 'GET',
             success: function (data) {
+                cacheObject.players = [];
                 let tbody = table.getElementsByTagName('tbody')[0];
                 for (let elem of data) {
+                    cacheObject.players.push(elem["name"]+elem["surname"]);
                     let tr = document.createElement('tr');
                     let th = document.createElement('th');
                     th.setAttribute('scope','row');
@@ -382,7 +435,9 @@ class DataOrganizer {
             method: 'GET',
             success: function (data) {
                 let tbody = table.getElementsByTagName('tbody')[0];
+                cacheObject.coaches = [];
                 for (let elem of data) {
+                    cacheObject.coaches.push(elem["name"]+elem["surname"]);
                     let tr = document.createElement('tr');
                     let th = document.createElement('th');
                     th.setAttribute('scope','row');

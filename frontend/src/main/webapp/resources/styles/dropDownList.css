@@ -1,7 +1,7 @@
 .bootstrap-select {
     width: 100% !important;
 }
-.clear {
+.clear, .genDoc {
     margin-top: 20px;
     width: 40%;
 }
