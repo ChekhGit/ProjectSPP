@@ -87,4 +87,13 @@ public class EntityFactory {
         coachEntity.setTeamByIdTeam(teamService.findById(idTeam));
         return coachEntity;
     }
+
+    public FileEntity getFileEntity(String status, String path, String name, String type){
+        FileEntity fileEntity = new FileEntity();
+        fileEntity.setStatus(status);
+        fileEntity.setName(name);
+        fileEntity.setPath(path);
+        fileEntity.setType(type);
+        return fileEntity;
+    }
 }
