@@ -96,4 +96,12 @@ public class EntityFactory {
         fileEntity.setType(type);
         return fileEntity;
     }
+
+    public TargetDistributionEntity getTargetDistributionEntity(String email, String target, int idTarget){
+        TargetDistributionEntity targetDistributionEntity = new TargetDistributionEntity();
+        targetDistributionEntity.setEmail(email);
+        targetDistributionEntity.setTarget(target);
+        targetDistributionEntity.setIdTarget(idTarget);
+        return targetDistributionEntity;
+    }
 }
