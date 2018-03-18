@@ -4,7 +4,7 @@ import com.spp.chekh.pmbackend.entity.CoachEntity;
 import com.spp.chekh.pmfrontend.view.model.custom.CoachTableViewModel;
 import org.springframework.core.convert.converter.Converter;
 
-public class CoachEntityToPlayerTableViewModelConverter implements Converter<CoachEntity, CoachTableViewModel> {
+public class CoachEntityToCoachTableViewModelConverter implements Converter<CoachEntity, CoachTableViewModel> {
     @Override
     public CoachTableViewModel convert(CoachEntity coachEntity) {
         CoachTableViewModel coachTableViewModel = new CoachTableViewModel();

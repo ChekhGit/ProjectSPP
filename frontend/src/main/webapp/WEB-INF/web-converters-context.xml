@@ -16,7 +16,7 @@
                     <bean class="com.spp.chekh.pmfrontend.converter.entity.LeagueEntityToLeagueViewModelConverter"/>
                     <bean class="com.spp.chekh.pmfrontend.converter.entity.PositionEntityToPositionViewModelConverter"/>
                     <bean class="com.spp.chekh.pmfrontend.converter.custom.PlayerEntityToPlayerTableViewModelConverter"/>
-                    <bean class="com.spp.chekh.pmfrontend.converter.custom.CoachEntityToPlayerTableViewModelConverter"/>
+                    <bean class="com.spp.chekh.pmfrontend.converter.custom.CoachEntityToCoachTableViewModelConverter"/>
                 </set>
             </property>
         </bean>
