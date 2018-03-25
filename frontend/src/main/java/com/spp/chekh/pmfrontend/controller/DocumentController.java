@@ -7,6 +7,7 @@ import com.spp.chekh.pmbackend.service.interfaces.document.DocumentDownloadServi
 import com.spp.chekh.pmbackend.service.interfaces.document.DocumentGeneratorService;
 import com.spp.chekh.pmfrontend.exception.ResourceNotFoundException;
 import com.spp.chekh.pmfrontend.view.model.custom.DocumentStatusViewModel;
+import com.spp.chekh.pmfrontend.view.model.factory.ViewModelFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,11 +47,12 @@ public class DocumentController {
     @Autowired
     private DocumentDownloadService documentDownloadService;
 
+    @Autowired
+    private ViewModelFactory viewModelFactory;
+
     @RequestMapping(value = "/document/team/{id}/report", method = RequestMethod.GET)
     @ResponseBody
     public DocumentStatusViewModel generateTeamRosterExcelDocument(@PathVariable int id, HttpServletRequest request){
-        DocumentStatusViewModel documentStatusViewModel = new DocumentStatusViewModel();
-
         List<PlayerEntity> playerEntities = playerService.findByIdTeam(id);
         TeamEntity teamEntity = teamService.findById(id);
 
@@ -58,8 +60,7 @@ public class DocumentController {
             throw new ResourceNotFoundException();
         }
 
-        String uploadsDir = "/uploads/";
-        String realPathToUploads =  request.getServletContext().getRealPath(uploadsDir);
+        String realPathToUploads = getRealPathToUploadsFolder(request);
 
         FileEntity fileEntity = entityFactory.getFileEntity("Creating", "", "", "xls");
         fileService.save(fileEntity);
@@ -67,16 +68,12 @@ public class DocumentController {
 
         documentGenerator.generateTeamExcelReport(teamEntity, playerEntities, fileId, realPathToUploads);
 
-        documentStatusViewModel.setFileId(String.valueOf(fileId));
-        documentStatusViewModel.setStatus("Creating");
-        return documentStatusViewModel;
+        return viewModelFactory.getDocumentViewModel(fileId, "Creating");
     }
 
     @RequestMapping(value = "/document/league/{id}/report", method = RequestMethod.GET)
     @ResponseBody
     public DocumentStatusViewModel generateLeagueExcelDocument(@PathVariable int id, HttpServletRequest request){
-        DocumentStatusViewModel documentStatusViewModel = new DocumentStatusViewModel();
-
         List<PlayerEntity> playerEntities = playerService.findAllByLeagueId(id);
         List<TeamEntity> teamEntities = teamService.findByIdLeague(id);
 
@@ -84,8 +81,7 @@ public class DocumentController {
             throw new ResourceNotFoundException();
         }
 
-        String uploadsDir = "/uploads/";
-        String realPathToUploads =  request.getServletContext().getRealPath(uploadsDir);
+        String realPathToUploads = getRealPathToUploadsFolder(request);
 
         FileEntity fileEntity = entityFactory.getFileEntity("Creating", "", "", "xls");
         fileService.save(fileEntity);
@@ -93,16 +89,12 @@ public class DocumentController {
 
         documentGenerator.generateLeagueExcelReport(teamEntities, playerEntities, fileId, realPathToUploads);
 
-        documentStatusViewModel.setFileId(String.valueOf(fileId));
-        documentStatusViewModel.setStatus("Creating");
-        return documentStatusViewModel;
+        return viewModelFactory.getDocumentViewModel(fileId, "Creating");
     }
 
     @RequestMapping(value = "/document/country/{id}/report", method = RequestMethod.GET)
     @ResponseBody
     public DocumentStatusViewModel generateCountryExcelDocument(@PathVariable int id, HttpServletRequest request){
-        DocumentStatusViewModel documentStatusViewModel = new DocumentStatusViewModel();
-
         List<TeamEntity> teamEntities = teamService.findAllByCountryId(id);
         List<LeagueEntity> leagueEntities = leagueService.findByIdCountry(id);
 
@@ -110,8 +102,7 @@ public class DocumentController {
             throw new ResourceNotFoundException();
         }
 
-        String uploadsDir = "/uploads/";
-        String realPathToUploads =  request.getServletContext().getRealPath(uploadsDir);
+        String realPathToUploads = getRealPathToUploadsFolder(request);
 
         FileEntity fileEntity = entityFactory.getFileEntity("Creating", "", "", "xls");
         fileService.save(fileEntity);
@@ -119,23 +110,19 @@ public class DocumentController {
 
         documentGenerator.generateCountryExcelReport(leagueEntities, teamEntities, fileId, realPathToUploads);
 
-        documentStatusViewModel.setFileId(String.valueOf(fileId));
-        documentStatusViewModel.setStatus("Creating");
-        return documentStatusViewModel;
+        return viewModelFactory.getDocumentViewModel(fileId, "Creating");
     }
 
     @RequestMapping(value = "/document/player/{id}/report", method = RequestMethod.GET)
     @ResponseBody
     public DocumentStatusViewModel generatePlayerWordDocument(@PathVariable int id, HttpServletRequest request){
-        DocumentStatusViewModel documentStatusViewModel = new DocumentStatusViewModel();
         PlayerEntity playerEntity = playerService.findById(id);
 
         if(playerEntity == null){
             throw new ResourceNotFoundException();
         }
 
-        String uploadsDir = "/uploads/";
-        String realPathToUploads =  request.getServletContext().getRealPath(uploadsDir);
+        String realPathToUploads = getRealPathToUploadsFolder(request);
 
         FileEntity fileEntity = entityFactory.getFileEntity("Creating", "", "", "docx");
         fileService.save(fileEntity);
@@ -143,23 +130,19 @@ public class DocumentController {
 
         documentGenerator.generatePlayerWordReport(playerEntity, fileId, realPathToUploads);
 
-        documentStatusViewModel.setFileId(String.valueOf(fileId));
-        documentStatusViewModel.setStatus("Creating");
-        return documentStatusViewModel;
+        return viewModelFactory.getDocumentViewModel(fileId, "Creating");
     }
 
     @RequestMapping(value = "/document/coach/{id}/report", method = RequestMethod.GET)
     @ResponseBody
     public DocumentStatusViewModel generatePdfFile(@PathVariable int id, HttpServletRequest request) throws Exception {
-        DocumentStatusViewModel documentStatusViewModel = new DocumentStatusViewModel();
         CoachEntity coachEntity = coachService.findById(id);
 
         if(coachEntity == null){
             throw new ResourceNotFoundException();
         }
 
-        String uploadsDir = "/uploads/";
-        String realPathToUploads =  request.getServletContext().getRealPath(uploadsDir);
+        String realPathToUploads = getRealPathToUploadsFolder(request);
 
         FileEntity fileEntity = entityFactory.getFileEntity("Creating", "", "", "pdf");
         fileService.save(fileEntity);
@@ -167,27 +150,21 @@ public class DocumentController {
 
         documentGenerator.generateCoachPDFReport(coachEntity, fileId, realPathToUploads);
 
-        documentStatusViewModel.setFileId(String.valueOf(fileId));
-        documentStatusViewModel.setStatus("Creating");
-        return documentStatusViewModel;
+        return viewModelFactory.getDocumentViewModel(fileId, "Creating");
     }
 
     @RequestMapping(value = "/document/{id}/check", method = RequestMethod.GET)
     @ResponseBody
     public DocumentStatusViewModel checkDocument(@PathVariable int id) throws FileNotFoundException {
-        DocumentStatusViewModel documentStatusViewModel = new DocumentStatusViewModel();
         FileEntity fileEntity = fileService.findById(id);
         if(fileEntity == null){
             throw new FileNotFoundException();
         }
-        documentStatusViewModel.setStatus(fileEntity.getStatus());
-        documentStatusViewModel.setFileId(String.valueOf(id));
-        return documentStatusViewModel;
+        return viewModelFactory.getDocumentViewModel(id, fileEntity.getStatus());
     }
 
     @RequestMapping(value = "/document/{id}/download", method = RequestMethod.GET)
     public void downloadFile(@PathVariable int id, HttpServletRequest request, HttpServletResponse httpServletResponse) throws Exception {
-
         FileEntity fileEntity = fileService.findById(id);
         if(fileEntity == null){
             throw new FileNotFoundException();
@@ -208,4 +185,11 @@ public class DocumentController {
             }
         }
     }
+
+    private String getRealPathToUploadsFolder(HttpServletRequest request){
+        String uploadsDir = "/uploads/";
+        String realPathToUploads =  request.getServletContext().getRealPath(uploadsDir);
+        return realPathToUploads;
+    }
+
 }
