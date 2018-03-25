@@ -192,7 +192,10 @@ public class DocumentGeneratorServiceImpl implements DocumentGeneratorService {
         Workbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = (HSSFSheet) workbook.createSheet("Country report");
         int rowNum = 0;
-        String countryName = leagueEntities.get(0).getCountryByIdCountry().getName();
+        String countryName = "";
+        if(!leagueEntities.isEmpty()) {
+            countryName = leagueEntities.get(0).getCountryByIdCountry().getName();
+        }
         HSSFRow header = sheet.createRow(rowNum++);
         header.createCell(0).setCellValue("Country:");
         header.createCell(1).setCellValue(countryName);
@@ -211,50 +214,52 @@ public class DocumentGeneratorServiceImpl implements DocumentGeneratorService {
             teamHeaderRow.createCell(0).setCellValue("Teams:");
 
             int leagueId = leagueEntity.getId();
-            List<TeamEntity> teamsInLeague = teamEntities.stream().filter(p -> p.getIdLeague() == leagueId).collect(Collectors.toList());
-            int teamNum = 1;
-            for (TeamEntity teamEntity : teamsInLeague){
-                HSSFRow teamRow = sheet.createRow(rowNum++);
-                teamRow.createCell(0).setCellValue(teamNum++);
-                teamRow.createCell(1).setCellValue(teamEntity.getName());
-            }
-
-            String fileName = countryName + "CountryReport.xls";
-
-            if(! new File(realPathToUploads).exists())
-            {
-                new File(realPathToUploads).mkdir();
-            }
-
-            String filePath = realPathToUploads + fileName;
-            File dest = new File(filePath);
-
-            FileOutputStream fo = null;
-            try {
-                fo = new FileOutputStream(dest);
-                workbook.write(fo);
-            } catch (IOException e) {
-            } finally {
-                if (fo != null) {
-                    try {
-                        fo.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                if (workbook != null) {
-                    try {
-                        workbook.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+            if (!teamEntities.isEmpty()) {
+                List<TeamEntity> teamsInLeague = teamEntities.stream().filter(p -> p.getIdLeague() == leagueId).collect(Collectors.toList());
+                int teamNum = 1;
+                for (TeamEntity teamEntity : teamsInLeague) {
+                    HSSFRow teamRow = sheet.createRow(rowNum++);
+                    teamRow.createCell(0).setCellValue(teamNum++);
+                    teamRow.createCell(1).setCellValue(teamEntity.getName());
                 }
             }
-
-            FileEntity fileEntity = entityFactory.getFileEntity("Ready", filePath, fileName, "xls");
-            fileEntity.setId(fileId);
-            fileService.save(fileEntity);
         }
+
+        String fileName = countryName + "CountryReport.xls";
+
+        if(! new File(realPathToUploads).exists())
+        {
+            new File(realPathToUploads).mkdir();
+        }
+
+        String filePath = realPathToUploads + fileName;
+        File dest = new File(filePath);
+
+        FileOutputStream fo = null;
+        try {
+            fo = new FileOutputStream(dest);
+            workbook.write(fo);
+        } catch (IOException e) {
+        } finally {
+            if (fo != null) {
+                try {
+                    fo.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (workbook != null) {
+                try {
+                    workbook.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        FileEntity fileEntity = entityFactory.getFileEntity("Ready", filePath, fileName, "xls");
+        fileEntity.setId(fileId);
+        fileService.save(fileEntity);
     }
 
     @Async
@@ -262,7 +267,10 @@ public class DocumentGeneratorServiceImpl implements DocumentGeneratorService {
 
         Workbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = (HSSFSheet) workbook.createSheet("League report");
-        String leagueName = teamEntities.get(0).getLeagueByIdLeague().getName();
+        String leagueName = "";
+        if (!teamEntities.isEmpty()) {
+            leagueName = teamEntities.get(0).getLeagueByIdLeague().getName();
+        }
         int rowNum = 0;
         HSSFRow header = sheet.createRow(rowNum++);
         header.createCell(0).setCellValue("League:");
@@ -282,52 +290,54 @@ public class DocumentGeneratorServiceImpl implements DocumentGeneratorService {
             rosterRow.createCell(0).setCellValue("Roster:");
 
             int teamId = teamEntity.getId();
-            List<PlayerEntity> playersInTeam = playerEntities.stream().filter(p -> p.getIdTeam() == teamId).collect(Collectors.toList());
-            int playerNum = 1;
-            for (PlayerEntity playerEntity : playersInTeam){
-                HSSFRow playerRow = sheet.createRow(rowNum++);
-                playerRow.createCell(0).setCellValue(playerNum++);
-                playerRow.createCell(1).setCellValue(playerEntity.getSurname());
-                playerRow.createCell(2).setCellValue(playerEntity.getName());
-                playerRow.createCell(3).setCellValue(playerEntity.getPositionByIdPosition().getName());
-            }
-
-            String fileName = leagueName + "LeagueReport.xls";
-
-            if(! new File(realPathToUploads).exists())
-            {
-                new File(realPathToUploads).mkdir();
-            }
-
-            String filePath = realPathToUploads + fileName;
-            File dest = new File(filePath);
-
-            FileOutputStream fo = null;
-            try {
-                fo = new FileOutputStream(dest);
-                workbook.write(fo);
-            } catch (IOException e) {
-            } finally {
-                if (fo != null) {
-                    try {
-                        fo.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                if (workbook != null) {
-                    try {
-                        workbook.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+            if(!playerEntities.isEmpty()) {
+                List<PlayerEntity> playersInTeam = playerEntities.stream().filter(p -> p.getIdTeam() == teamId).collect(Collectors.toList());
+                int playerNum = 1;
+                for (PlayerEntity playerEntity : playersInTeam) {
+                    HSSFRow playerRow = sheet.createRow(rowNum++);
+                    playerRow.createCell(0).setCellValue(playerNum++);
+                    playerRow.createCell(1).setCellValue(playerEntity.getSurname());
+                    playerRow.createCell(2).setCellValue(playerEntity.getName());
+                    playerRow.createCell(3).setCellValue(playerEntity.getPositionByIdPosition().getName());
                 }
             }
-
-            FileEntity fileEntity = entityFactory.getFileEntity("Ready", filePath, fileName, "xls");
-            fileEntity.setId(fileId);
-            fileService.save(fileEntity);
         }
+
+        String fileName = leagueName + "LeagueReport.xls";
+
+        if(! new File(realPathToUploads).exists())
+        {
+            new File(realPathToUploads).mkdir();
+        }
+
+        String filePath = realPathToUploads + fileName;
+        File dest = new File(filePath);
+
+        FileOutputStream fo = null;
+        try {
+            fo = new FileOutputStream(dest);
+            workbook.write(fo);
+        } catch (IOException e) {
+        } finally {
+            if (fo != null) {
+                try {
+                    fo.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (workbook != null) {
+                try {
+                    workbook.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        FileEntity fileEntity = entityFactory.getFileEntity("Ready", filePath, fileName, "xls");
+        fileEntity.setId(fileId);
+        fileService.save(fileEntity);
     }
 
     @Async

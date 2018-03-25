@@ -54,7 +54,7 @@ public class DocumentController {
         List<PlayerEntity> playerEntities = playerService.findByIdTeam(id);
         TeamEntity teamEntity = teamService.findById(id);
 
-        if(teamEntity == null || playerEntities == null){
+        if(teamEntity == null){
             throw new ResourceNotFoundException();
         }
 
@@ -80,7 +80,7 @@ public class DocumentController {
         List<PlayerEntity> playerEntities = playerService.findAllByLeagueId(id);
         List<TeamEntity> teamEntities = teamService.findByIdLeague(id);
 
-        if(teamEntities == null || playerEntities == null || teamEntities.isEmpty() || playerEntities.isEmpty()){
+        if(teamEntities == null || playerEntities == null){
             throw new ResourceNotFoundException();
         }
 
@@ -106,7 +106,7 @@ public class DocumentController {
         List<TeamEntity> teamEntities = teamService.findAllByCountryId(id);
         List<LeagueEntity> leagueEntities = leagueService.findByIdCountry(id);
 
-        if(teamEntities == null || leagueEntities == null || teamEntities.isEmpty() || leagueEntities.isEmpty()){
+        if(teamEntities == null || leagueEntities == null){
             throw new ResourceNotFoundException();
         }
 
