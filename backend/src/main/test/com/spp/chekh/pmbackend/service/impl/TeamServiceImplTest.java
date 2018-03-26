@@ -24,7 +24,7 @@ public class TeamServiceImplTest {
     private TeamRepository teamRepository;
 
     @Test
-    public void findAll() {
+    public void testFindAll() {
         final TeamEntity MOCKED_TEAM_ENTITY = new TeamEntity();
         final List<TeamEntity> MOCKED_TEAM_ENTITY_LIST = new ArrayList<>();
         MOCKED_TEAM_ENTITY_LIST.add(MOCKED_TEAM_ENTITY);
@@ -37,7 +37,7 @@ public class TeamServiceImplTest {
     }
 
     @Test
-    public void findById() {
+    public void testFindById() {
         final int TEAM_ID = 1;
         final TeamEntity MOCKED_TEAM_ENTITY = new TeamEntity();
         MOCKED_TEAM_ENTITY.setId(TEAM_ID);
@@ -50,7 +50,7 @@ public class TeamServiceImplTest {
     }
 
     @Test
-    public void findByIdLeague() {
+    public void testFindByIdLeague() {
         final int LEAGUE_ID = 1;
         final TeamEntity MOCKED_TEAM_ENTITY = new TeamEntity();
         MOCKED_TEAM_ENTITY.setIdLeague(LEAGUE_ID);
@@ -66,7 +66,7 @@ public class TeamServiceImplTest {
     }
 
     @Test
-    public void findAllByCountryId() {
+    public void testFindAllByCountryId() {
         final int COUNTRY_ID = 1;
         final TeamEntity MOCKED_TEAM_ENTITY = new TeamEntity();
         final List<TeamEntity> MOCKED_TEAM_ENTITY_LIST = new ArrayList<>();
